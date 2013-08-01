@@ -184,5 +184,12 @@ namespace WindowsFormsApplication2
             private static extern IntPtr GetModuleHandle(string lpModuleName);
 
         }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            vmi.exit = true;
+            this.Close();
+        }
+
     }
 }
