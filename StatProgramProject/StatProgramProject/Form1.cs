@@ -30,7 +30,10 @@ namespace WindowsFormsApplication2
         }
         private void Mouse(object sender, EventArgs e)
         {
-            Updatestats();
+            if (FormWindowState.Minimized != WindowState)
+            {
+                Updatestats();
+            }
         }
         public void Updatestats()
         {
@@ -67,6 +70,7 @@ namespace WindowsFormsApplication2
                 if (this.WindowState == FormWindowState.Minimized)
                 {
                     this.WindowState = FormWindowState.Normal;
+                    Updatestats();
                 }
             }
         }
