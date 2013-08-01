@@ -102,9 +102,19 @@ namespace WindowsFormsApplication2
             this.Close();
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void versionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("StatProgram" + "\n" + "Version: 0.0" + "\n" +"Developers: Sajage & Drakger" , "About" , MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("StatProgram" + "\n" + "Version: 0.0", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                Process.Start("notepad.exe", "Changelog.txt");
+        }
+
+        private void developersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Developers:" + "\n" + "Sajage&Drakger", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
