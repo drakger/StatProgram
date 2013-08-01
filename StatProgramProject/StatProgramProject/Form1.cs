@@ -133,6 +133,12 @@ namespace WindowsFormsApplication2
                         label.ForeColor = fontDialog1.Color;
                     }      
                     menuStrip1.ForeColor = fontDialog1.Color;
+                    ToolStripMenuItem[] ToolStripMenuItemsOnForm = { exitToolStripMenuItem1, changelogToolStripMenuItem, fontToolStripMenuItem, backgroundToolStripMenuItem,
+                                     settingsToolStripMenuItem, aboutToolStripMenuItem, };
+                    foreach (ToolStripMenuItem ToolStripMenuItem in ToolStripMenuItemsOnForm)
+                    {
+                        ToolStripMenuItem.ForeColor = fontDialog1.Color;
+                    }  
                 }
             }
             catch (Exception)
@@ -151,6 +157,12 @@ namespace WindowsFormsApplication2
                 {
                     this.BackColor = colorDialog1.Color;
                     menuStrip1.BackColor = colorDialog1.Color;
+                    ToolStripMenuItem[] ToolStripMenuItemsOnForm = { exitToolStripMenuItem1, changelogToolStripMenuItem, fontToolStripMenuItem, backgroundToolStripMenuItem,
+                                     settingsToolStripMenuItem, aboutToolStripMenuItem, };
+                    foreach (ToolStripMenuItem ToolStripMenuItem in ToolStripMenuItemsOnForm)
+                    {
+                        ToolStripMenuItem.BackColor = colorDialog1.Color;
+                    }  
                 }
             }
              catch (Exception)
