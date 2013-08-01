@@ -150,6 +150,7 @@ namespace WindowsFormsApplication2
                     label9.ForeColor = fontDialog1.Color;
                     label10.Font = fontDialog1.Font;
                     label10.ForeColor = fontDialog1.Color;
+                    menuStrip1.ForeColor = fontDialog1.Color;
                 }
             }
             catch (Exception)
