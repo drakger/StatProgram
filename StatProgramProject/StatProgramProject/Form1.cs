@@ -113,7 +113,7 @@ namespace WindowsFormsApplication2
 
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                Process.Start("notepad.exe", "Changelog.txt");
+                System.Diagnostics.Process.Start("Changelog.txt");
         }
 
         private void developersToolStripMenuItem_Click(object sender, EventArgs e)
