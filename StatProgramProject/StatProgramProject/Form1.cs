@@ -16,7 +16,7 @@ namespace WindowsFormsApplication2
 {
     public partial class Form1 : Form
     {
-        string programVersion = "0.02";
+        string programVersion = "0.03";
         GlobalKeyboardHook kHook;
 
 
