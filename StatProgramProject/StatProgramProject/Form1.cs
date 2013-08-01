@@ -159,5 +159,23 @@ namespace WindowsFormsApplication2
 
             }
         }
+
+        private void backgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+             try
+            {
+                DialogResult result = colorDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    this.BackColor = colorDialog1.Color;
+                    menuStrip1.BackColor = colorDialog1.Color;
+                }
+            }
+             catch (Exception)
+             {
+                 MessageBox.Show("Invalid color! Choose different color.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+             }
+        }
     }
 }
