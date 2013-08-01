@@ -38,10 +38,10 @@ namespace WindowsFormsApplication2
         }
         public void Updatestats()
         {
-            label1.Text = Convert.ToString(vars.lclick);
-            label8.Text = Convert.ToString(vars.rclick);
-            label10.Text = Convert.ToString(vars.mclick);
-            label2.Text = Convert.ToString(vars.keys);
+            lblLeftClickCount.Text = Convert.ToString(vars.lclick);
+            lblRightClickCount.Text = Convert.ToString(vars.rclick);
+            lblMiddleClickCount.Text = Convert.ToString(vars.mclick);
+            lblKeyPressCount.Text = Convert.ToString(vars.keys);
         }
         public void gHook_KeyUp(object sender, KeyEventArgs e)
         {
@@ -107,19 +107,14 @@ namespace WindowsFormsApplication2
             this.Close();
         }
 
-        private void versionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("StatProgram" + "\n" + "Version: 0.0", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void changelogToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("Changelog.txt");
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Developers: " + "\n" + "Sajage & Drakger" + "\n" + "v"
+            MessageBox.Show("Developers: " + "\n" + "Sajage & Drakger" + "\n\n" + "v"
               + programVersion, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -130,26 +125,13 @@ namespace WindowsFormsApplication2
                 DialogResult result = fontDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    label1.Font = fontDialog1.Font;
-                    label1.ForeColor = fontDialog1.Color;
-                    label2.Font = fontDialog1.Font;
-                    label2.ForeColor = fontDialog1.Color;
-                    label3.Font = fontDialog1.Font;
-                    label3.ForeColor = fontDialog1.Color;
-                    label4.Font = fontDialog1.Font;
-                    label4.ForeColor = fontDialog1.Color;
-                    label5.Font = fontDialog1.Font;
-                    label5.ForeColor = fontDialog1.Color;
-                    label6.Font = fontDialog1.Font;
-                    label6.ForeColor = fontDialog1.Color;
-                    label7.Font = fontDialog1.Font;
-                    label7.ForeColor = fontDialog1.Color;
-                    label8.Font = fontDialog1.Font;
-                    label8.ForeColor = fontDialog1.Color;
-                    label9.Font = fontDialog1.Font;
-                    label9.ForeColor = fontDialog1.Color;
-                    label10.Font = fontDialog1.Font;
-                    label10.ForeColor = fontDialog1.Color;
+                    Label[] labelsOnForm = { lblLeftClickCount, lblKeyPressCount, lblMouseStats, lblKeyboardStats, lblLeftClickText,
+                                     lblKeyPressText, lblRightClickText, lblRightClickCount, lblMiddleClickText, lblMiddleClickCount };
+                    foreach (Label label in labelsOnForm)
+                    {   
+                        label.Font = fontDialog1.Font;
+                        label.ForeColor = fontDialog1.Color;
+                    }      
                     menuStrip1.ForeColor = fontDialog1.Color;
                 }
             }
