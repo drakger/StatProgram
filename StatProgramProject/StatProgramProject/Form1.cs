@@ -69,6 +69,7 @@ namespace WindowsFormsApplication2
         {
             // TO-DO: ADD CHOICES BETWEEN LOCAL INTERFACES http://www.m0interactive.com/archives/2008/02/06/how_to_calculate_network_bandwidth_speed_in_c_/
             // PERHAPS TO-DO: ADD BETTER TIMER http://www.m0interactive.com/archives/2006/12/21/high_resolution_timer_in_net_2_0.html
+            // TO-DO: IF THE NUMBER REACHES A HIGH ENOUGH VALUE, CONVERT IT TO A BIGGER TYPE
             NetworkInterface nic = nicArr[0];
             IPv4InterfaceStatistics interfaceStats = nic.GetIPv4Statistics();
             if (lblBytesSentCount.Text != "0" && lblBytesReceivedCount.Text != "0")
@@ -168,15 +169,17 @@ namespace WindowsFormsApplication2
                 if (result == DialogResult.OK)
                 {
                     Label[] labelsOnForm = { lblLeftClickCount, lblKeyPressCount, lblMouseStats, lblKeyboardStats, lblLeftClickText,
-                                     lblKeyPressText, lblRightClickText, lblRightClickCount, lblMiddleClickText, lblMiddleClickCount };
+                                     lblKeyPressText, lblRightClickText, lblRightClickCount, lblMiddleClickText, lblMiddleClickCount,
+                                     lblBytesReceivedCount, lblBytesReceivedText, lblBytesSentCount, lblBytesSentText, lblDownSpeedCount,
+                                     lblDownSpeedText, lblNetStats, lblUpSpeedCount, lblUpSpeedText };
                     foreach (Label label in labelsOnForm)
                     {   
                         label.Font = fontDialog1.Font;
                         label.ForeColor = fontDialog1.Color;
                     }      
                     menuStrip1.ForeColor = fontDialog1.Color;
-                    ToolStripMenuItem[] ToolStripMenuItemsOnForm = { exitToolStripMenuItem1, changelogToolStripMenuItem, fontToolStripMenuItem, backgroundToolStripMenuItem,
-                                     settingsToolStripMenuItem, aboutToolStripMenuItem, };
+                    ToolStripMenuItem[] ToolStripMenuItemsOnForm = { exitToolStripMenuItem1, changelogToolStripMenuItem, fontToolStripMenuItem,
+                                                                       backgroundToolStripMenuItem, settingsToolStripMenuItem, aboutToolStripMenuItem };
                     foreach (ToolStripMenuItem ToolStripMenuItem in ToolStripMenuItemsOnForm)
                     {
                         ToolStripMenuItem.ForeColor = fontDialog1.Color;
@@ -199,8 +202,8 @@ namespace WindowsFormsApplication2
                 {
                     this.BackColor = colorDialog1.Color;
                     menuStrip1.BackColor = colorDialog1.Color;
-                    ToolStripMenuItem[] ToolStripMenuItemsOnForm = { exitToolStripMenuItem1, changelogToolStripMenuItem, fontToolStripMenuItem, backgroundToolStripMenuItem,
-                                     settingsToolStripMenuItem, aboutToolStripMenuItem, };
+                    ToolStripMenuItem[] ToolStripMenuItemsOnForm = { exitToolStripMenuItem1, changelogToolStripMenuItem, fontToolStripMenuItem,
+                                                                       backgroundToolStripMenuItem, settingsToolStripMenuItem, aboutToolStripMenuItem };
                     foreach (ToolStripMenuItem ToolStripMenuItem in ToolStripMenuItemsOnForm)
                     {
                         ToolStripMenuItem.BackColor = colorDialog1.Color;
