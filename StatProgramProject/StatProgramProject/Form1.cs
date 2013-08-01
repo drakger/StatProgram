@@ -122,5 +122,41 @@ namespace WindowsFormsApplication2
             MessageBox.Show("Developers: " + "\n" + "Sajage & Drakger" + "\n" + "v"
               + programVersion, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult result = fontDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    label1.Font = fontDialog1.Font;
+                    label1.ForeColor = fontDialog1.Color;
+                    label2.Font = fontDialog1.Font;
+                    label2.ForeColor = fontDialog1.Color;
+                    label3.Font = fontDialog1.Font;
+                    label3.ForeColor = fontDialog1.Color;
+                    label4.Font = fontDialog1.Font;
+                    label4.ForeColor = fontDialog1.Color;
+                    label5.Font = fontDialog1.Font;
+                    label5.ForeColor = fontDialog1.Color;
+                    label6.Font = fontDialog1.Font;
+                    label6.ForeColor = fontDialog1.Color;
+                    label7.Font = fontDialog1.Font;
+                    label7.ForeColor = fontDialog1.Color;
+                    label8.Font = fontDialog1.Font;
+                    label8.ForeColor = fontDialog1.Color;
+                    label9.Font = fontDialog1.Font;
+                    label9.ForeColor = fontDialog1.Color;
+                    label10.Font = fontDialog1.Font;
+                    label10.ForeColor = fontDialog1.Color;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid Font! Choose different font.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
     }
 }
