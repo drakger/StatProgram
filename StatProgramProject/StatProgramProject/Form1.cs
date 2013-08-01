@@ -15,6 +15,7 @@ namespace WindowsFormsApplication2
 {
     public partial class Form1 : Form
     {
+        string programVersion = "0.01";
         GlobalKeyboardHook kHook;
 
         public Form1()
@@ -118,7 +119,8 @@ namespace WindowsFormsApplication2
 
         private void developersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Developers:" + "\n" + "Sajage&Drakger", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Developers: " + "\n" + "Sajage & Drakger" + "\n" + "v"
+                + programVersion, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
