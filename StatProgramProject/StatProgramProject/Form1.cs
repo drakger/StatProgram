@@ -126,6 +126,11 @@ namespace WindowsFormsApplication2
                     MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
                     MouseAction(null, new EventArgs());
                 }
+                if (nCode >= 0 && MouseMessages.WM_RBUTTONDOWN == (MouseMessages)wParam)
+                {
+                    MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
+                    MouseAction(null, new EventArgs());
+                }
                 return CallNextHookEx(_hookID, nCode, wParam, lParam);
             }
 
