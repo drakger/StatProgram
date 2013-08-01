@@ -112,15 +112,15 @@ namespace WindowsFormsApplication2
             MessageBox.Show("StatProgram" + "\n" + "Version: 0.0", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
+        private void changelogToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-                System.Diagnostics.Process.Start("Changelog.txt");
+            System.Diagnostics.Process.Start("Changelog.txt");
         }
 
-        private void developersToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Developers: " + "\n" + "Sajage & Drakger" + "\n" + "v"
-                + programVersion, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+              + programVersion, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
