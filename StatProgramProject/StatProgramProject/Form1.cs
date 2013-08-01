@@ -101,5 +101,10 @@ namespace WindowsFormsApplication2
             vars.exit = true;
             this.Close();
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("StatProgram" + "\n" + "Version: 0.0" + "\n" +"Developers: Sajage & Drakger" , "About" , MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
