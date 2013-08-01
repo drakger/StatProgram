@@ -45,7 +45,7 @@ namespace WindowsFormsApplication2
                 Hide();
         }
 
-        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e) //taskbar icon
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -56,7 +56,7 @@ namespace WindowsFormsApplication2
             {
                 this.Show();
                 this.Focus();
-                this.TopMost = true;
+                this.TopMost = true; 
                 this.TopMost = false;
                 if (this.WindowState == FormWindowState.Minimized)
                 {
@@ -121,12 +121,17 @@ namespace WindowsFormsApplication2
             private static IntPtr HookCallback(
               int nCode, IntPtr wParam, IntPtr lParam)
             {
-                if (nCode >= 0 && MouseMessages.WM_LBUTTONDOWN == (MouseMessages)wParam)
+                if (nCode >= 0 && MouseMessages.WM_LBUTTONDOWN == (MouseMessages)wParam)  // Different Mouse Clicks
                 {
                     MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
                     MouseAction(null, new EventArgs());
                 }
                 if (nCode >= 0 && MouseMessages.WM_RBUTTONDOWN == (MouseMessages)wParam)
+                {
+                    MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
+                    MouseAction(null, new EventArgs());
+                }
+                if (nCode >= 0 && MouseMessages.WM_MBUTTONDOWN == (MouseMessages)wParam)
                 {
                     MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
                     MouseAction(null, new EventArgs());
@@ -143,6 +148,7 @@ namespace WindowsFormsApplication2
                 WM_MOUSEMOVE = 0x0200,
                 WM_MOUSEWHEEL = 0x020A,
                 WM_RBUTTONDOWN = 0x0204,
+                WM_MBUTTONDOWN = 0x0207,
                 WM_RBUTTONUP = 0x0205
             }
             [StructLayout(LayoutKind.Sequential)]
