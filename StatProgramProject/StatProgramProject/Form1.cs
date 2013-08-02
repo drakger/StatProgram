@@ -331,7 +331,7 @@ namespace WindowsFormsApplication2
                 {
                     uint keycount = Convert.ToUInt32(row.Cells[1].Value);
                     keycount++;
-                    row.Cells[1].Value = keycount;
+                    row.Cells[1].Value = keycount.ToString();
                     foundkey = true;
                 }
             }
@@ -340,7 +340,7 @@ namespace WindowsFormsApplication2
                 dataGridView1.Rows.Add();
                 int index = dataGridView1.Rows.Count - 1;
                 dataGridView1.Rows[index].Cells[0].Value = ((char)e.KeyValue).ToString();
-                dataGridView1.Rows[index].Cells[1].Value = 1;
+                dataGridView1.Rows[index].Cells[1].Value = "1";
             }
             updateStats();
         }
