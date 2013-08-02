@@ -59,6 +59,11 @@ namespace WindowsFormsApplication2
             }
             menuStrip1.BackColor = vars.backcolor;
             menuStrip1.ForeColor = vars.forecolor;
+            dataGridView1.BackgroundColor = vars.backcolor;
+            dataGridView1.ForeColor = vars.forecolor;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = vars.backcolor;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = vars.forecolor;
+            dataGridView1.GridColor = vars.forecolor;
             menuStrip1.Renderer = new ToolStripProfessionalRenderer(new TestColorTable());
         }
         public void updateStats()
