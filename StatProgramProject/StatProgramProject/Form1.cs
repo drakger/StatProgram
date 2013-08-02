@@ -367,15 +367,20 @@ namespace WindowsFormsApplication2
             }
             if (e.Button == MouseButtons.Left)
             {
-                this.Show();
-                this.Focus();
-                this.TopMost = true; 
-                this.TopMost = false;
-                if (this.WindowState == FormWindowState.Minimized)
-                {
-                    this.WindowState = FormWindowState.Normal;
-                    updateStats();
-                }
+                showform1();
+            }
+        }
+
+        public void showform1()
+        {
+            this.Show();
+            this.Focus();
+            this.TopMost = true;
+            this.TopMost = false;
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.WindowState = FormWindowState.Normal;
+                updateStats();
             }
         }
 
@@ -387,10 +392,10 @@ namespace WindowsFormsApplication2
 
         public static class vars
         {
-            public static int rclick;
-            public static int lclick;
-            public static int mclick;
-            public static int keys;
+            public static uint rclick;
+            public static uint lclick;
+            public static uint mclick;
+            public static uint keys;
             public static bool exit;
             public static Color backcolor;
             public static Color forecolor;
@@ -476,6 +481,11 @@ namespace WindowsFormsApplication2
             {
                 get { return vars.forecolor; }
             }
+        }
+
+        private void statsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showform1();
         }
     }
 }
