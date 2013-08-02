@@ -298,6 +298,7 @@ namespace WindowsFormsApplication2
 
                 if (reMaximized) reMaximized = false;
             }
+            notifyIcon1.Text = "Download Speed: " + getNetDownSpeed().ToString() + " " + getNetDownSpeedType() +"\n"+ " Upload Speed: " + getNetUpSpeed().ToString() + " " + getNetUpSpeedType();
         }
         void timer_Tick(object sender, EventArgs e)
         {
