@@ -298,7 +298,18 @@ namespace WindowsFormsApplication2
 
                 if (reMaximized) reMaximized = false;
             }
-            notifyIcon1.Text = "Download Speed: " + getNetDownSpeed().ToString() + " " + getNetDownSpeedType() +"\n"+ " Upload Speed: " + getNetUpSpeed().ToString() + " " + getNetUpSpeedType();
+            string notifyicontext = "Download Speed: " + getNetDownSpeed().ToString() + " " + getNetDownSpeedType() + " Upload Speed: " + getNetUpSpeed().ToString() + " " + getNetUpSpeedType() +
+                "\n" + "Downloaded: " + getDataReceived().ToString() + " " + getDataReceivedType() + " Uploaded: " + getDataSent().ToString() + " " + getDataSentType();
+            SetNotifyIconText(notifyIcon1, notifyicontext);
+        }
+        public static void SetNotifyIconText(NotifyIcon ni, string text)
+        {
+            if (text.Length >= 128) throw new ArgumentOutOfRangeException("Text limited to 127 characters");
+            Type t = typeof(NotifyIcon);
+            BindingFlags hidden = BindingFlags.NonPublic | BindingFlags.Instance;
+            t.GetField("text", hidden).SetValue(ni, text);
+            if ((bool)t.GetField("added", hidden).GetValue(ni))
+                t.GetMethod("UpdateIcon", hidden).Invoke(ni, new object[] { true });
         }
         void timer_Tick(object sender, EventArgs e)
         {
