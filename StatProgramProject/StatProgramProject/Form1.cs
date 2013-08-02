@@ -19,7 +19,6 @@ namespace WindowsFormsApplication2
         string programVersion = "0.03";
         GlobalKeyboardHook kHook;
 
-
         // Net Stats
         IPv4InterfaceStatistics interfaceStats = NetworkInterface.GetAllNetworkInterfaces()[0].GetIPv4Statistics();
         private NetworkInterface[] nicArr;
@@ -38,6 +37,9 @@ namespace WindowsFormsApplication2
                 kHook.HookedKeys.Add(key);
             MouseHook.Start();
             MouseHook.MouseAction += new EventHandler(Mouse);
+            vars.backcolor = Color.Black;
+            vars.forecolor = Color.Lime;
+            menucolor();
         }
         private void Mouse(object sender, EventArgs e)
         {
@@ -45,6 +47,19 @@ namespace WindowsFormsApplication2
             {
                 updateStats();
             }
+        }
+        public void menucolor()
+        {
+            ToolStripMenuItem[] ToolStripMenuItemsOnForm = { exitToolStripMenuItem1, changelogToolStripMenuItem, fontToolStripMenuItem,
+                                                                       backgroundToolStripMenuItem, settingsToolStripMenuItem, aboutToolStripMenuItem };
+            foreach (ToolStripMenuItem ToolStripMenuItem in ToolStripMenuItemsOnForm)
+            {
+                ToolStripMenuItem.ForeColor = vars.forecolor;
+                ToolStripMenuItem.BackColor = vars.backcolor;
+            }
+            menuStrip1.BackColor = vars.backcolor;
+            menuStrip1.ForeColor = vars.forecolor;
+            menuStrip1.Renderer = new ToolStripProfessionalRenderer(new TestColorTable());
         }
         public void updateStats()
         {
@@ -132,6 +147,8 @@ namespace WindowsFormsApplication2
             public static int mclick;
             public static int keys;
             public static bool exit;
+            public static Color backcolor;
+            public static Color forecolor;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -178,12 +195,8 @@ namespace WindowsFormsApplication2
                         label.ForeColor = fontDialog1.Color;
                     }      
                     menuStrip1.ForeColor = fontDialog1.Color;
-                    ToolStripMenuItem[] ToolStripMenuItemsOnForm = { exitToolStripMenuItem1, changelogToolStripMenuItem, fontToolStripMenuItem,
-                                                                       backgroundToolStripMenuItem, settingsToolStripMenuItem, aboutToolStripMenuItem };
-                    foreach (ToolStripMenuItem ToolStripMenuItem in ToolStripMenuItemsOnForm)
-                    {
-                        ToolStripMenuItem.ForeColor = fontDialog1.Color;
-                    }  
+                    vars.forecolor = fontDialog1.Color;
+                    menucolor();  
                 }
             }
             catch (Exception)
@@ -202,12 +215,8 @@ namespace WindowsFormsApplication2
                 {
                     this.BackColor = colorDialog1.Color;
                     menuStrip1.BackColor = colorDialog1.Color;
-                    ToolStripMenuItem[] ToolStripMenuItemsOnForm = { exitToolStripMenuItem1, changelogToolStripMenuItem, fontToolStripMenuItem,
-                                                                       backgroundToolStripMenuItem, settingsToolStripMenuItem, aboutToolStripMenuItem };
-                    foreach (ToolStripMenuItem ToolStripMenuItem in ToolStripMenuItemsOnForm)
-                    {
-                        ToolStripMenuItem.BackColor = colorDialog1.Color;
-                    }  
+                    vars.backcolor = colorDialog1.Color;
+                    menucolor();
                 }
             }
              catch (Exception)
@@ -215,6 +224,13 @@ namespace WindowsFormsApplication2
                  MessageBox.Show("Invalid color! Choose different color.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
              }
+        }
+        public class TestColorTable : ProfessionalColorTable
+        {
+            public override Color MenuBorder  //added for changing the menu border
+            {
+                get { return vars.forecolor; }
+            }
         }
     }
 }
