@@ -255,7 +255,7 @@ namespace WindowsFormsApplication2
             {
                 if (Convert.ToString(row.Cells[0].Value) == ((char)e.KeyValue).ToString())
                 {
-                    Int64 keycount = Convert.ToInt64(row.Cells[1].Value);
+                    uint keycount = Convert.ToUInt32(row.Cells[1].Value);
                     keycount++;
                     row.Cells[1].Value = keycount;
                     foundkey = true;
