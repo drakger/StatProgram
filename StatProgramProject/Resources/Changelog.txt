@@ -1,0 +1,12 @@
+Changelog
+
+v0.03
+Internet statistics added, updating every second with timer (bytes sent, received, download/uplaod speed)
+
+v0.02
+Settings menu added - ability to change font for all labels, colors for all text, and background color
+
+v0.01
+Basic things added - labels, tableLayoutPanel, menuStrip ...
+Mouse statistics added - separated for left, right and middle clicks: counts the clicks
+Keystroke statistics added: counts the keys pressed
