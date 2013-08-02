@@ -150,13 +150,10 @@ namespace WindowsFormsApplication2
                     row.Cells[1].Value = keycount;
                     foundkey = true;
                 }
-                else
-                {
-                    foundkey = false;
-                }
             }
             if (foundkey == false)
             {
+                dataGridView1.Rows.Add();
                 int index = dataGridView1.Rows.Count - 1;
                 dataGridView1.Rows[index].Cells[0].Value = ((char)e.KeyValue).ToString();
                 dataGridView1.Rows[index].Cells[1].Value = 1;
