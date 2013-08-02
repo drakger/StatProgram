@@ -138,6 +138,8 @@ namespace WindowsFormsApplication2
         }
         public void gHook_KeyUp(object sender, KeyEventArgs e)
         {
+            bool foundkey;
+            foundkey = false;
             vars.keys++;
             foreach (DataGridViewRow row in this.dataGridView1.Rows)
             {
@@ -146,13 +148,18 @@ namespace WindowsFormsApplication2
                     Int64 keycount = Convert.ToInt64(row.Cells[1].Value);
                     keycount++;
                     row.Cells[1].Value = keycount;
+                    foundkey = true;
                 }
                 else
                 {
-                    int index = dataGridView1.Rows.Count -1;
-                    dataGridView1.Rows[index].Cells[0].Value = ((char)e.KeyValue).ToString();
-                    dataGridView1.Rows[index].Cells[1].Value = 1;
+                    foundkey = false;
                 }
+            }
+            if (foundkey == false)
+            {
+                int index = dataGridView1.Rows.Count - 1;
+                dataGridView1.Rows[index].Cells[0].Value = ((char)e.KeyValue).ToString();
+                dataGridView1.Rows[index].Cells[1].Value = 1;
             }
             updateStats();
         }
