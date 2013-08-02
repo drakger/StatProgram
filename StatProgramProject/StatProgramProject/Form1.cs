@@ -29,8 +29,10 @@ namespace WindowsFormsApplication2
         bool reMaximized = false;
         protected string netUpSpeedType = "byte/s";
         protected string netDownSpeedType = "byte/s";
-        protected int netUpSpeed;
-        protected int netDownSpeed;
+        protected int netUpSpeed, netDownSpeed, dataSent, dataReceived;
+        protected long bytesSent, bytesReceived;
+        protected string dataSentType = "byte";
+        protected string dataReceivedType = "byte";
 
         public Form1()
         {
@@ -92,44 +94,14 @@ namespace WindowsFormsApplication2
             nicArr = NetworkInterface.GetAllNetworkInterfaces();
         }
 
-        private void setNetDownSpeedType(int n)
+        private void setNetDownSpeedType(string s)
         {
-            if (n > 1024)
-            {
-                 if ((n / 1024) > 1024)
-                 {
-                        if ((n / 1024 / 1024) > 1024) 
-                        {
-                             netDownSpeedType = "Gb/s";
-                             return;
-                        }
-                        netDownSpeedType = "Mb/s";
-                        return;
-                 }
-                netDownSpeedType = "kb/s";
-                return;
-            }
-            netDownSpeedType = "byte/s";
+            netDownSpeedType = s;
         }
 
-        private void setNetUpSpeedType(int n)
+        private void setNetUpSpeedType(string s)
         {
-            if (n > 1024)
-            {
-                 if ((n / 1024) > 1024)
-                 {
-                        if ((n / 1024 / 1024) > 1024) 
-                        {
-                             netUpSpeedType = "Gb/s";
-                             return;
-                        }
-                        netUpSpeedType = "Mb/s";
-                        return;
-                 }
-                netUpSpeedType = "kb/s";
-                return;
-            }
-            netUpSpeedType = "byte/s";
+            netUpSpeedType = s;
         }
 
         private string getNetDownSpeedType()
@@ -144,7 +116,6 @@ namespace WindowsFormsApplication2
 
         private void setNetDownSpeed(int n)
         {
-            System.Diagnostics.Debug.Write("netDownSpeed n value:" + n);
             if (n > 1024)
             {
                 if ((n / 1024) > 1024)
@@ -152,20 +123,23 @@ namespace WindowsFormsApplication2
                     if ((n / 1024 / 1024) > 1024)
                     {
                         netDownSpeed = n / 1024 / 1024 / 1024;
+                        setNetDownSpeedType("Gb/s");
                         return;
                     }
                     netDownSpeed = n / 1024 / 1024;
+                    setNetDownSpeedType("Mb/s");
                     return;
                 }
                 netDownSpeed = n / 1024;
+                setNetDownSpeedType("kb/s");
                 return;
             }
             netDownSpeed = n;
+            setNetDownSpeedType("byte/s");
         }
 
         private void setNetUpSpeed(int n)
         {
-            System.Diagnostics.Debug.Write("netUpSpeed n value:" + n);
             if (n > 1024)
             {
                 if ((n / 1024) > 1024)
@@ -173,15 +147,19 @@ namespace WindowsFormsApplication2
                     if ((n / 1024 / 1024) > 1024)
                     {
                         netUpSpeed = n / 1024 / 1024 / 1024;
+                        setNetUpSpeedType("Gb/s");
                         return;
                     }
                     netUpSpeed = n / 1024 / 1024;
+                    setNetUpSpeedType("Mb/s");
                     return;
                 }
                 netUpSpeed = n / 1024;
+                setNetUpSpeedType("kb/s");
                 return;
             }
             netUpSpeed = n;
+            setNetUpSpeedType("byte/s");
         }
 
         private int getNetDownSpeed()
@@ -192,6 +170,102 @@ namespace WindowsFormsApplication2
         private int getNetUpSpeed()
         {
             return netUpSpeed;
+        }
+
+        private void setDataSent(long n1, long n2)
+        {
+            bytesSent = (n1 - n2);
+            if (bytesSent > (1024))
+            {
+                if (bytesSent > (1024 * 1024))
+                {
+                    if (bytesSent > (1024 * 1024 * 1024))
+                        setDataSentType("Gb");
+                    else
+                        setDataSentType("Mb");
+                }
+                else
+                    setDataSentType("kb");
+            }
+            if (getDataSentType() == "byte")
+            {
+                dataSent = (int)bytesSent;
+            }
+            else if (getDataSentType() == "kb")
+            {
+                dataSent = (int)bytesSent / 1024;
+            }
+            else if (getDataSentType() == "Mb")
+            {
+                dataSent = (int)bytesSent / 1024 / 1024;
+            }
+            else if (getDataSentType() == "Gb")
+            {
+                dataSent = (int)bytesSent / 1024 / 1024 / 1024;
+            }
+        }
+
+        private void setDataReceived(long n1, long n2)
+        {
+            bytesReceived = (n1 - n2);
+            if (bytesReceived > (1024))
+            {
+                if (bytesReceived > (1024 * 1024))
+                {
+                    if (bytesReceived > (1024 * 1024 * 1024))
+                        setDataReceivedType("Gb");
+                    else
+                        setDataReceivedType("Mb");
+                }
+                else
+                    setDataReceivedType("kb");
+            }
+            if (getDataReceivedType() == "byte")
+            {
+                dataReceived = (int)bytesReceived;
+            }
+            else if (getDataReceivedType() == "kb")
+            {
+                dataReceived = (int)bytesReceived / 1024;
+            }
+            else if (getDataReceivedType() == "Mb")
+            {
+                dataReceived = (int)bytesReceived / 1024 / 1024;
+            }
+            else if (getDataReceivedType() == "Gb")
+            {
+                dataReceived = (int)bytesReceived / 1024 / 1024 / 1024;
+            }
+        }
+
+        private int getDataSent()
+        {
+            return dataSent;
+        }
+
+        private int getDataReceived()
+        {
+            return dataReceived;
+        }
+
+        private void setDataSentType(string s)
+        {
+            dataSentType = s;
+        }
+
+        private void setDataReceivedType(string s)
+        {
+            dataReceivedType = s;
+        }
+
+        private string getDataSentType()
+        {
+            return dataSentType;
+        }
+
+        private string getDataReceivedType()
+        {
+            return dataReceivedType;
         }
 
         private void InitializeTimer()
@@ -222,19 +296,19 @@ namespace WindowsFormsApplication2
                 // Calculate speed if there was already a change in traffic
                 if (lblDataSentCount.Text != "0" && lblDataReceivedCount.Text != "0" && !reMaximized)
                 {
-                    int bytesSentSpeed = (int)(interfaceStats.BytesSent - bytesSentAtStartUp - double.Parse(lblDataSentCount.Text));
-                    int bytesReceivedSpeed = (int)(interfaceStats.BytesReceived - bytesReceivedAtStartUp - double.Parse(lblDataReceivedCount.Text));
+                    int bytesSentSpeed = (int)(interfaceStats.BytesSent - bytesSentAtStartUp - bytesSent);
+                    int bytesReceivedSpeed = (int)(interfaceStats.BytesReceived - bytesReceivedAtStartUp - bytesReceived);
                     setNetUpSpeed(bytesSentSpeed);
                     setNetDownSpeed(bytesReceivedSpeed);
-                    setNetUpSpeedType(bytesSentSpeed);
-                    setNetDownSpeedType(bytesReceivedSpeed);
                 }
                     lblUpSpeedCount.Text = getNetUpSpeed().ToString() + " " + getNetUpSpeedType();
                     lblDownSpeedCount.Text = getNetDownSpeed().ToString() + " " + getNetDownSpeedType();
 
                 // Display traffic that happened since the program was started
-                lblDataSentCount.Text = (interfaceStats.BytesSent - bytesSentAtStartUp).ToString();
-                lblDataReceivedCount.Text = (interfaceStats.BytesReceived - bytesReceivedAtStartUp).ToString();
+                setDataSent(interfaceStats.BytesSent, bytesSentAtStartUp);
+                setDataReceived(interfaceStats.BytesReceived, bytesReceivedAtStartUp);
+                lblDataSentCount.Text = getDataSent().ToString() + " " + getDataSentType();
+                lblDataReceivedCount.Text = getDataReceived().ToString() + " " + getDataReceivedType();
 
                 if (reMaximized) reMaximized = false;
             }
