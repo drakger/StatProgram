@@ -26,6 +26,7 @@ namespace WindowsFormsApplication2
         private Timer netTimer;
         long bytesSentAtStartUp, bytesReceivedAtStartUp;
         bool startUp = true;
+        bool reMaximized = false;
 
         public Form1()
         {
@@ -84,34 +85,47 @@ namespace WindowsFormsApplication2
         }
         public void updateNetStats()
         {
-            // TO-DO: ADD CHOICES BETWEEN LOCAL INTERFACES http://www.m0interactive.com/archives/2008/02/06/how_to_calculate_network_bandwidth_speed_in_c_/
-            // PERHAPS TO-DO: ADD BETTER TIMER http://www.m0interactive.com/archives/2006/12/21/high_resolution_timer_in_net_2_0.html
-            // TO-DO: IF THE NUMBER REACHES A HIGH ENOUGH VALUE, CONVERT IT TO A BIGGER TYPE
-            NetworkInterface nic = nicArr[0];
-            IPv4InterfaceStatistics interfaceStats = nic.GetIPv4Statistics();
-            // Get values of traffic at the program's startup
-            if (startUp)
+            if (!isMinimized())
             {
-                bytesSentAtStartUp = interfaceStats.BytesSent;
-                bytesReceivedAtStartUp = interfaceStats.BytesReceived;
-                startUp = false;
-                
+                // TO-DO: ADD CHOICES BETWEEN LOCAL INTERFACES http://www.m0interactive.com/archives/2008/02/06/how_to_calculate_network_bandwidth_speed_in_c_/
+                // PERHAPS TO-DO: ADD BETTER TIMER http://www.m0interactive.com/archives/2006/12/21/high_resolution_timer_in_net_2_0.html
+                // TO-DO: IF THE NUMBER REACHES A HIGH ENOUGH VALUE, CONVERT IT TO A BIGGER TYPE
+                NetworkInterface nic = nicArr[0];
+                IPv4InterfaceStatistics interfaceStats = nic.GetIPv4Statistics();
+
+                // Get values of traffic at the program's startup
+                if (startUp)
+                {
+                    bytesSentAtStartUp = interfaceStats.BytesSent;
+                    bytesReceivedAtStartUp = interfaceStats.BytesReceived;
+                    startUp = false;
+
+                }
+
+                // Calculate speed if there was already a change in traffic
+                if (lblBytesSentCount.Text != "0" && lblBytesReceivedCount.Text != "0" && !reMaximized)
+                {
+                    int bytesSentSpeed = (int)(interfaceStats.BytesSent - bytesSentAtStartUp - double.Parse(lblBytesSentCount.Text)) / 1024;
+                    int bytesReceivedSpeed = (int)(interfaceStats.BytesReceived - bytesReceivedAtStartUp - double.Parse(lblBytesReceivedCount.Text)) / 1024;
+                    lblUpSpeedCount.Text = bytesSentSpeed.ToString() + " kb/s";
+                    lblDownSpeedCount.Text = bytesReceivedSpeed.ToString() + " kb/s";
+                }
+
+                // Display traffic that happened since the program was started
+                lblBytesSentCount.Text = (interfaceStats.BytesSent - bytesSentAtStartUp).ToString();
+                lblBytesReceivedCount.Text = (interfaceStats.BytesReceived - bytesReceivedAtStartUp).ToString();
+
+                if (reMaximized) reMaximized = false;
             }
-            // Calculate speed if there was already a change in traffic
-            if (lblBytesSentCount.Text != "0" && lblBytesReceivedCount.Text != "0")
-            {
-                int bytesSentSpeed = (int)(interfaceStats.BytesSent - bytesSentAtStartUp - double.Parse(lblBytesSentCount.Text)) / 1024;
-                int bytesReceivedSpeed = (int)(interfaceStats.BytesReceived - bytesReceivedAtStartUp - double.Parse(lblBytesReceivedCount.Text)) / 1024;
-                lblUpSpeedCount.Text = bytesSentSpeed.ToString() + " kb/s";
-                lblDownSpeedCount.Text = bytesReceivedSpeed.ToString() + " kb/s";
-            }
-            // Display traffic that happened since the program was started
-            lblBytesSentCount.Text = (interfaceStats.BytesSent - bytesSentAtStartUp).ToString();
-            lblBytesReceivedCount.Text = (interfaceStats.BytesReceived - bytesReceivedAtStartUp).ToString();
         }
         void timer_Tick(object sender, EventArgs e)
         {
             updateNetStats();
+        }
+
+        public bool isMinimized()
+        {
+            return FormWindowState.Minimized == WindowState;
         }
         public void gHook_KeyUp(object sender, KeyEventArgs e)
         {
@@ -121,8 +135,13 @@ namespace WindowsFormsApplication2
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            if (FormWindowState.Minimized == WindowState)
+            if (isMinimized())
+            {
+                reMaximized = true;
+                lblDownSpeedCount.Text = "0";
+                lblUpSpeedCount.Text = "0";
                 Hide();
+            }
         }
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e) //taskbar icon
