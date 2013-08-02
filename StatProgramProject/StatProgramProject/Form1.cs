@@ -188,21 +188,13 @@ namespace WindowsFormsApplication2
                     setDataSentType("kb");
             }
             if (getDataSentType() == "byte")
-            {
                 dataSent = (int)bytesSent;
-            }
             else if (getDataSentType() == "kb")
-            {
                 dataSent = (int)bytesSent / 1024;
-            }
             else if (getDataSentType() == "Mb")
-            {
                 dataSent = (int)bytesSent / 1024 / 1024;
-            }
             else if (getDataSentType() == "Gb")
-            {
                 dataSent = (int)bytesSent / 1024 / 1024 / 1024;
-            }
         }
 
         private void setDataReceived(long n1, long n2)
@@ -221,21 +213,13 @@ namespace WindowsFormsApplication2
                     setDataReceivedType("kb");
             }
             if (getDataReceivedType() == "byte")
-            {
                 dataReceived = (int)bytesReceived;
-            }
             else if (getDataReceivedType() == "kb")
-            {
                 dataReceived = (int)bytesReceived / 1024;
-            }
             else if (getDataReceivedType() == "Mb")
-            {
                 dataReceived = (int)bytesReceived / 1024 / 1024;
-            }
             else if (getDataReceivedType() == "Gb")
-            {
                 dataReceived = (int)bytesReceived / 1024 / 1024 / 1024;
-            }
         }
 
         private int getDataSent()
