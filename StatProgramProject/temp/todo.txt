@@ -4,5 +4,6 @@ To-do:
 - DataGridView sorting
 - DataGridView function keys display
 - internet connection connected/disconnected
+- uptime
 - Settings Form
 - ...
