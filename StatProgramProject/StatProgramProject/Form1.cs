@@ -69,6 +69,8 @@ namespace WindowsFormsApplication2
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = vars.forecolor;
             dataGridView1.DefaultCellStyle.BackColor = vars.backcolor;
             dataGridView1.DefaultCellStyle.ForeColor = vars.forecolor;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = vars.backcolor;
+            dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = vars.forecolor;
             dataGridView1.RowHeadersDefaultCellStyle.BackColor = vars.backcolor;
             dataGridView1.RowHeadersDefaultCellStyle.ForeColor = vars.forecolor;
             dataGridView1.GridColor = vars.forecolor;
