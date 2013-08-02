@@ -27,6 +27,10 @@ namespace WindowsFormsApplication2
         long bytesSentAtStartUp, bytesReceivedAtStartUp;
         bool startUp = true;
         bool reMaximized = false;
+        protected string netUpSpeedType = "byte/s";
+        protected string netDownSpeedType = "byte/s";
+        protected int netUpSpeed;
+        protected int netDownSpeed;
 
         public Form1()
         {
@@ -85,6 +89,109 @@ namespace WindowsFormsApplication2
             // Grab all local interfaces to this computer
             nicArr = NetworkInterface.GetAllNetworkInterfaces();
         }
+
+        private void setNetDownSpeedType(int n)
+        {
+            if (n > 1024)
+            {
+                 if ((n / 1024) > 1024)
+                 {
+                        if ((n / 1024 / 1024) > 1024) 
+                        {
+                             netDownSpeedType = "Gb/s";
+                             return;
+                        }
+                        netDownSpeedType = "Mb/s";
+                        return;
+                 }
+                netDownSpeedType = "kb/s";
+                return;
+            }
+            netDownSpeedType = "byte/s";
+        }
+
+        private void setNetUpSpeedType(int n)
+        {
+            if (n > 1024)
+            {
+                 if ((n / 1024) > 1024)
+                 {
+                        if ((n / 1024 / 1024) > 1024) 
+                        {
+                             netUpSpeedType = "Gb/s";
+                             return;
+                        }
+                        netUpSpeedType = "Mb/s";
+                        return;
+                 }
+                netUpSpeedType = "kb/s";
+                return;
+            }
+            netUpSpeedType = "byte/s";
+        }
+
+        private string getNetDownSpeedType()
+        {
+            return netDownSpeedType;
+        }
+
+        private string getNetUpSpeedType()
+        {
+            return netUpSpeedType;
+        }
+
+        private void setNetDownSpeed(int n)
+        {
+            System.Diagnostics.Debug.Write("netDownSpeed n value:" + n);
+            if (n > 1024)
+            {
+                if ((n / 1024) > 1024)
+                {
+                    if ((n / 1024 / 1024) > 1024)
+                    {
+                        netDownSpeed = n / 1024 / 1024 / 1024;
+                        return;
+                    }
+                    netDownSpeed = n / 1024 / 1024;
+                    return;
+                }
+                netDownSpeed = n / 1024;
+                return;
+            }
+            netDownSpeed = n;
+        }
+
+        private void setNetUpSpeed(int n)
+        {
+            System.Diagnostics.Debug.Write("netUpSpeed n value:" + n);
+            if (n > 1024)
+            {
+                if ((n / 1024) > 1024)
+                {
+                    if ((n / 1024 / 1024) > 1024)
+                    {
+                        netUpSpeed = n / 1024 / 1024 / 1024;
+                        return;
+                    }
+                    netUpSpeed = n / 1024 / 1024;
+                    return;
+                }
+                netUpSpeed = n / 1024;
+                return;
+            }
+            netUpSpeed = n;
+        }
+
+        private int getNetDownSpeed()
+        {
+            return netDownSpeed;
+        }
+
+        private int getNetUpSpeed()
+        {
+            return netUpSpeed;
+        }
+
         private void InitializeTimer()
         {
             netTimer = new Timer();
@@ -108,21 +215,24 @@ namespace WindowsFormsApplication2
                     bytesSentAtStartUp = interfaceStats.BytesSent;
                     bytesReceivedAtStartUp = interfaceStats.BytesReceived;
                     startUp = false;
-
                 }
 
                 // Calculate speed if there was already a change in traffic
-                if (lblBytesSentCount.Text != "0" && lblBytesReceivedCount.Text != "0" && !reMaximized)
+                if (lblDataSentCount.Text != "0" && lblDataReceivedCount.Text != "0" && !reMaximized)
                 {
-                    int bytesSentSpeed = (int)(interfaceStats.BytesSent - bytesSentAtStartUp - double.Parse(lblBytesSentCount.Text)) / 1024;
-                    int bytesReceivedSpeed = (int)(interfaceStats.BytesReceived - bytesReceivedAtStartUp - double.Parse(lblBytesReceivedCount.Text)) / 1024;
-                    lblUpSpeedCount.Text = bytesSentSpeed.ToString() + " kb/s";
-                    lblDownSpeedCount.Text = bytesReceivedSpeed.ToString() + " kb/s";
+                    int bytesSentSpeed = (int)(interfaceStats.BytesSent - bytesSentAtStartUp - double.Parse(lblDataSentCount.Text));
+                    int bytesReceivedSpeed = (int)(interfaceStats.BytesReceived - bytesReceivedAtStartUp - double.Parse(lblDataReceivedCount.Text));
+                    setNetUpSpeed(bytesSentSpeed);
+                    setNetDownSpeed(bytesReceivedSpeed);
+                    setNetUpSpeedType(bytesSentSpeed);
+                    setNetDownSpeedType(bytesReceivedSpeed);
                 }
+                    lblUpSpeedCount.Text = getNetUpSpeed().ToString() + " " + getNetUpSpeedType();
+                    lblDownSpeedCount.Text = getNetDownSpeed().ToString() + " " + getNetDownSpeedType();
 
                 // Display traffic that happened since the program was started
-                lblBytesSentCount.Text = (interfaceStats.BytesSent - bytesSentAtStartUp).ToString();
-                lblBytesReceivedCount.Text = (interfaceStats.BytesReceived - bytesReceivedAtStartUp).ToString();
+                lblDataSentCount.Text = (interfaceStats.BytesSent - bytesSentAtStartUp).ToString();
+                lblDataReceivedCount.Text = (interfaceStats.BytesReceived - bytesReceivedAtStartUp).ToString();
 
                 if (reMaximized) reMaximized = false;
             }
@@ -166,8 +276,8 @@ namespace WindowsFormsApplication2
             if (isMinimized())
             {
                 reMaximized = true;
-                lblDownSpeedCount.Text = "0";
-                lblUpSpeedCount.Text = "0";
+                lblDownSpeedCount.Text = "0" + getNetDownSpeedType();
+                lblUpSpeedCount.Text = "0" + getNetUpSpeedType();
                 Hide();
             }
         }
@@ -246,7 +356,7 @@ namespace WindowsFormsApplication2
                 {
                     Label[] labelsOnForm = { lblLeftClickCount, lblKeyPressCount, lblMouseStats, lblKeyboardStats, lblLeftClickText,
                                      lblKeyPressText, lblRightClickText, lblRightClickCount, lblMiddleClickText, lblMiddleClickCount,
-                                     lblBytesReceivedCount, lblBytesReceivedText, lblBytesSentCount, lblBytesSentText, lblDownSpeedCount,
+                                     lblDataReceivedCount, lblDataReceivedText, lblDataSentCount, lblDataSentText, lblDownSpeedCount,
                                      lblDownSpeedText, lblNetStats, lblUpSpeedCount, lblUpSpeedText };
                     foreach (Label label in labelsOnForm)
                     {   

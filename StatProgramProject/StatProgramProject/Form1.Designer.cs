@@ -62,12 +62,12 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblUpSpeedCount = new System.Windows.Forms.Label();
             this.lblDownSpeedCount = new System.Windows.Forms.Label();
-            this.lblBytesReceivedCount = new System.Windows.Forms.Label();
-            this.lblBytesSentCount = new System.Windows.Forms.Label();
+            this.lblDataReceivedCount = new System.Windows.Forms.Label();
+            this.lblDataSentCount = new System.Windows.Forms.Label();
             this.lblUpSpeedText = new System.Windows.Forms.Label();
             this.lblDownSpeedText = new System.Windows.Forms.Label();
-            this.lblBytesReceivedText = new System.Windows.Forms.Label();
-            this.lblBytesSentText = new System.Windows.Forms.Label();
+            this.lblDataReceivedText = new System.Windows.Forms.Label();
+            this.lblDataSentText = new System.Windows.Forms.Label();
             this.lblNetStats = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.KeyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -196,7 +196,7 @@
             this.lblKeyPressText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKeyPressText.Location = new System.Drawing.Point(358, 64);
             this.lblKeyPressText.Name = "lblKeyPressText";
-            this.lblKeyPressText.Size = new System.Drawing.Size(144, 36);
+            this.lblKeyPressText.Size = new System.Drawing.Size(143, 36);
             this.lblKeyPressText.TabIndex = 7;
             this.lblKeyPressText.Text = "Key presses:";
             this.lblKeyPressText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -206,7 +206,7 @@
             this.lblKeyPressCount.AutoSize = true;
             this.lblKeyPressCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblKeyPressCount.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKeyPressCount.Location = new System.Drawing.Point(508, 64);
+            this.lblKeyPressCount.Location = new System.Drawing.Point(507, 64);
             this.lblKeyPressCount.Name = "lblKeyPressCount";
             this.lblKeyPressCount.Size = new System.Drawing.Size(98, 36);
             this.lblKeyPressCount.TabIndex = 2;
@@ -221,7 +221,7 @@
             this.lblKeyboardStats.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKeyboardStats.Location = new System.Drawing.Point(358, 0);
             this.lblKeyboardStats.Name = "lblKeyboardStats";
-            this.lblKeyboardStats.Size = new System.Drawing.Size(248, 64);
+            this.lblKeyboardStats.Size = new System.Drawing.Size(247, 64);
             this.lblKeyboardStats.TabIndex = 4;
             this.lblKeyboardStats.Text = "Keyboard statistics";
             this.lblKeyboardStats.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -233,7 +233,7 @@
             this.lblLeftClickText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeftClickText.Location = new System.Drawing.Point(3, 64);
             this.lblLeftClickText.Name = "lblLeftClickText";
-            this.lblLeftClickText.Size = new System.Drawing.Size(187, 36);
+            this.lblLeftClickText.Size = new System.Drawing.Size(188, 36);
             this.lblLeftClickText.TabIndex = 6;
             this.lblLeftClickText.Text = "Left clicks:";
             this.lblLeftClickText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -243,9 +243,9 @@
             this.lblLeftClickCount.AutoSize = true;
             this.lblLeftClickCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLeftClickCount.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLeftClickCount.Location = new System.Drawing.Point(196, 64);
+            this.lblLeftClickCount.Location = new System.Drawing.Point(197, 64);
             this.lblLeftClickCount.Name = "lblLeftClickCount";
-            this.lblLeftClickCount.Size = new System.Drawing.Size(88, 36);
+            this.lblLeftClickCount.Size = new System.Drawing.Size(87, 36);
             this.lblLeftClickCount.TabIndex = 1;
             this.lblLeftClickCount.Text = "0";
             this.lblLeftClickCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -270,7 +270,7 @@
             this.lblRightClickText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRightClickText.Location = new System.Drawing.Point(3, 100);
             this.lblRightClickText.Name = "lblRightClickText";
-            this.lblRightClickText.Size = new System.Drawing.Size(187, 36);
+            this.lblRightClickText.Size = new System.Drawing.Size(188, 36);
             this.lblRightClickText.TabIndex = 7;
             this.lblRightClickText.Text = "Right clicks:";
             this.lblRightClickText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -280,9 +280,9 @@
             this.lblRightClickCount.AutoSize = true;
             this.lblRightClickCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblRightClickCount.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRightClickCount.Location = new System.Drawing.Point(196, 100);
+            this.lblRightClickCount.Location = new System.Drawing.Point(197, 100);
             this.lblRightClickCount.Name = "lblRightClickCount";
-            this.lblRightClickCount.Size = new System.Drawing.Size(88, 36);
+            this.lblRightClickCount.Size = new System.Drawing.Size(87, 36);
             this.lblRightClickCount.TabIndex = 8;
             this.lblRightClickCount.Text = "0";
             this.lblRightClickCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -294,7 +294,7 @@
             this.lblMiddleClickText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMiddleClickText.Location = new System.Drawing.Point(3, 136);
             this.lblMiddleClickText.Name = "lblMiddleClickText";
-            this.lblMiddleClickText.Size = new System.Drawing.Size(187, 36);
+            this.lblMiddleClickText.Size = new System.Drawing.Size(188, 36);
             this.lblMiddleClickText.TabIndex = 9;
             this.lblMiddleClickText.Text = "Middle clicks:";
             this.lblMiddleClickText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -304,9 +304,9 @@
             this.lblMiddleClickCount.AutoSize = true;
             this.lblMiddleClickCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMiddleClickCount.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMiddleClickCount.Location = new System.Drawing.Point(196, 136);
+            this.lblMiddleClickCount.Location = new System.Drawing.Point(197, 136);
             this.lblMiddleClickCount.Name = "lblMiddleClickCount";
-            this.lblMiddleClickCount.Size = new System.Drawing.Size(88, 36);
+            this.lblMiddleClickCount.Size = new System.Drawing.Size(87, 36);
             this.lblMiddleClickCount.TabIndex = 10;
             this.lblMiddleClickCount.Text = "0";
             this.lblMiddleClickCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -317,21 +317,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 6;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.20323F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.73246F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.04094F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.90721F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.21739F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.5942F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.14544F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.61167F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.95262F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.71451F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.08354F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.49222F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.lblKeyPressText, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblUpSpeedCount, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.lblDownSpeedCount, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.lblBytesReceivedCount, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.lblBytesSentCount, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblDataReceivedCount, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblDataSentCount, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.lblUpSpeedText, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.lblDownSpeedText, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.lblBytesReceivedText, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.lblBytesSentText, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblDataReceivedText, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblDataSentText, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.lblNetStats, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.lblMiddleClickCount, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblMiddleClickText, 0, 3);
@@ -356,7 +357,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 461);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
@@ -366,11 +366,11 @@
             this.tableLayoutPanel1.SetColumnSpan(this.lblUpSpeedCount, 2);
             this.lblUpSpeedCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblUpSpeedCount.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpSpeedCount.Location = new System.Drawing.Point(196, 417);
+            this.lblUpSpeedCount.Location = new System.Drawing.Point(197, 417);
             this.lblUpSpeedCount.Name = "lblUpSpeedCount";
-            this.lblUpSpeedCount.Size = new System.Drawing.Size(156, 44);
+            this.lblUpSpeedCount.Size = new System.Drawing.Size(155, 44);
             this.lblUpSpeedCount.TabIndex = 19;
-            this.lblUpSpeedCount.Text = "0 kb/s";
+            this.lblUpSpeedCount.Text = "0 byte/s";
             this.lblUpSpeedCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDownSpeedCount
@@ -379,38 +379,38 @@
             this.tableLayoutPanel1.SetColumnSpan(this.lblDownSpeedCount, 2);
             this.lblDownSpeedCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDownSpeedCount.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDownSpeedCount.Location = new System.Drawing.Point(196, 381);
+            this.lblDownSpeedCount.Location = new System.Drawing.Point(197, 381);
             this.lblDownSpeedCount.Name = "lblDownSpeedCount";
-            this.lblDownSpeedCount.Size = new System.Drawing.Size(156, 36);
+            this.lblDownSpeedCount.Size = new System.Drawing.Size(155, 36);
             this.lblDownSpeedCount.TabIndex = 18;
-            this.lblDownSpeedCount.Text = "0 kb/s";
+            this.lblDownSpeedCount.Text = "0 byte/s";
             this.lblDownSpeedCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblBytesReceivedCount
+            // lblDataReceivedCount
             // 
-            this.lblBytesReceivedCount.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.lblBytesReceivedCount, 2);
-            this.lblBytesReceivedCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblBytesReceivedCount.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBytesReceivedCount.Location = new System.Drawing.Point(196, 345);
-            this.lblBytesReceivedCount.Name = "lblBytesReceivedCount";
-            this.lblBytesReceivedCount.Size = new System.Drawing.Size(156, 36);
-            this.lblBytesReceivedCount.TabIndex = 17;
-            this.lblBytesReceivedCount.Text = "0";
-            this.lblBytesReceivedCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDataReceivedCount.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lblDataReceivedCount, 2);
+            this.lblDataReceivedCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDataReceivedCount.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataReceivedCount.Location = new System.Drawing.Point(197, 309);
+            this.lblDataReceivedCount.Name = "lblDataReceivedCount";
+            this.lblDataReceivedCount.Size = new System.Drawing.Size(155, 36);
+            this.lblDataReceivedCount.TabIndex = 17;
+            this.lblDataReceivedCount.Text = "0";
+            this.lblDataReceivedCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblBytesSentCount
+            // lblDataSentCount
             // 
-            this.lblBytesSentCount.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.lblBytesSentCount, 2);
-            this.lblBytesSentCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblBytesSentCount.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBytesSentCount.Location = new System.Drawing.Point(196, 309);
-            this.lblBytesSentCount.Name = "lblBytesSentCount";
-            this.lblBytesSentCount.Size = new System.Drawing.Size(156, 36);
-            this.lblBytesSentCount.TabIndex = 16;
-            this.lblBytesSentCount.Text = "0";
-            this.lblBytesSentCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDataSentCount.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lblDataSentCount, 2);
+            this.lblDataSentCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDataSentCount.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataSentCount.Location = new System.Drawing.Point(197, 345);
+            this.lblDataSentCount.Name = "lblDataSentCount";
+            this.lblDataSentCount.Size = new System.Drawing.Size(155, 36);
+            this.lblDataSentCount.TabIndex = 16;
+            this.lblDataSentCount.Text = "0";
+            this.lblDataSentCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblUpSpeedText
             // 
@@ -419,7 +419,7 @@
             this.lblUpSpeedText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUpSpeedText.Location = new System.Drawing.Point(3, 417);
             this.lblUpSpeedText.Name = "lblUpSpeedText";
-            this.lblUpSpeedText.Size = new System.Drawing.Size(187, 44);
+            this.lblUpSpeedText.Size = new System.Drawing.Size(188, 44);
             this.lblUpSpeedText.TabIndex = 15;
             this.lblUpSpeedText.Text = "Upload speed:";
             this.lblUpSpeedText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -432,37 +432,37 @@
             this.lblDownSpeedText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDownSpeedText.Location = new System.Drawing.Point(3, 381);
             this.lblDownSpeedText.Name = "lblDownSpeedText";
-            this.lblDownSpeedText.Size = new System.Drawing.Size(187, 36);
+            this.lblDownSpeedText.Size = new System.Drawing.Size(188, 36);
             this.lblDownSpeedText.TabIndex = 14;
             this.lblDownSpeedText.Text = "Download speed:";
             this.lblDownSpeedText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblDownSpeedText.UseMnemonic = false;
             // 
-            // lblBytesReceivedText
+            // lblDataReceivedText
             // 
-            this.lblBytesReceivedText.AutoSize = true;
-            this.lblBytesReceivedText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblBytesReceivedText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBytesReceivedText.Location = new System.Drawing.Point(3, 345);
-            this.lblBytesReceivedText.Name = "lblBytesReceivedText";
-            this.lblBytesReceivedText.Size = new System.Drawing.Size(187, 36);
-            this.lblBytesReceivedText.TabIndex = 13;
-            this.lblBytesReceivedText.Text = "Bytes received:";
-            this.lblBytesReceivedText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblBytesReceivedText.UseMnemonic = false;
+            this.lblDataReceivedText.AutoSize = true;
+            this.lblDataReceivedText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDataReceivedText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataReceivedText.Location = new System.Drawing.Point(3, 309);
+            this.lblDataReceivedText.Name = "lblDataReceivedText";
+            this.lblDataReceivedText.Size = new System.Drawing.Size(188, 36);
+            this.lblDataReceivedText.TabIndex = 13;
+            this.lblDataReceivedText.Text = "Data received:";
+            this.lblDataReceivedText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblDataReceivedText.UseMnemonic = false;
             // 
-            // lblBytesSentText
+            // lblDataSentText
             // 
-            this.lblBytesSentText.AutoSize = true;
-            this.lblBytesSentText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblBytesSentText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBytesSentText.Location = new System.Drawing.Point(3, 309);
-            this.lblBytesSentText.Name = "lblBytesSentText";
-            this.lblBytesSentText.Size = new System.Drawing.Size(187, 36);
-            this.lblBytesSentText.TabIndex = 12;
-            this.lblBytesSentText.Text = "Bytes sent:";
-            this.lblBytesSentText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblBytesSentText.UseMnemonic = false;
+            this.lblDataSentText.AutoSize = true;
+            this.lblDataSentText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDataSentText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataSentText.Location = new System.Drawing.Point(3, 345);
+            this.lblDataSentText.Name = "lblDataSentText";
+            this.lblDataSentText.Size = new System.Drawing.Size(188, 36);
+            this.lblDataSentText.TabIndex = 12;
+            this.lblDataSentText.Text = "Data sent:";
+            this.lblDataSentText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblDataSentText.UseMnemonic = false;
             // 
             // lblNetStats
             // 
@@ -522,7 +522,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.tableLayoutPanel1.SetRowSpan(this.dataGridView1, 3);
-            this.dataGridView1.Size = new System.Drawing.Size(248, 139);
+            this.dataGridView1.Size = new System.Drawing.Size(247, 139);
             this.dataGridView1.TabIndex = 20;
             // 
             // KeyColumn
@@ -593,12 +593,12 @@
         private System.Windows.Forms.Label lblLeftClickText;
         private System.Windows.Forms.Label lblUpSpeedCount;
         private System.Windows.Forms.Label lblDownSpeedCount;
-        private System.Windows.Forms.Label lblBytesReceivedCount;
-        private System.Windows.Forms.Label lblBytesSentCount;
+        private System.Windows.Forms.Label lblDataReceivedCount;
+        private System.Windows.Forms.Label lblDataSentCount;
         private System.Windows.Forms.Label lblUpSpeedText;
         private System.Windows.Forms.Label lblDownSpeedText;
-        private System.Windows.Forms.Label lblBytesReceivedText;
-        private System.Windows.Forms.Label lblBytesSentText;
+        private System.Windows.Forms.Label lblDataReceivedText;
+        private System.Windows.Forms.Label lblDataSentText;
         private System.Windows.Forms.Label lblNetStats;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyColumn;
