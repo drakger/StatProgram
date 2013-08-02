@@ -24,6 +24,8 @@ namespace WindowsFormsApplication2
         private NetworkInterface[] nicArr;
         private const double timerUpdate = 1000;
         private Timer netTimer;
+        long bytesSentAtStartUp, bytesReceivedAtStartUp;
+        bool startUp = true;
 
         public Form1()
         {
@@ -87,15 +89,25 @@ namespace WindowsFormsApplication2
             // TO-DO: IF THE NUMBER REACHES A HIGH ENOUGH VALUE, CONVERT IT TO A BIGGER TYPE
             NetworkInterface nic = nicArr[0];
             IPv4InterfaceStatistics interfaceStats = nic.GetIPv4Statistics();
+            // Get values of traffic at the program's startup
+            if (startUp)
+            {
+                bytesSentAtStartUp = interfaceStats.BytesSent;
+                bytesReceivedAtStartUp = interfaceStats.BytesReceived;
+                startUp = false;
+                
+            }
+            // Calculate speed if there was already a change in traffic
             if (lblBytesSentCount.Text != "0" && lblBytesReceivedCount.Text != "0")
             {
-                int bytesSentSpeed = (int)(interfaceStats.BytesSent - double.Parse(lblBytesSentCount.Text)) / 1024;
-                int bytesReceivedSpeed = (int)(interfaceStats.BytesReceived - double.Parse(lblBytesReceivedCount.Text)) / 1024;
-                lblDownSpeedCount.Text = bytesReceivedSpeed.ToString() + " kb/s";
+                int bytesSentSpeed = (int)(interfaceStats.BytesSent - bytesSentAtStartUp - double.Parse(lblBytesSentCount.Text)) / 1024;
+                int bytesReceivedSpeed = (int)(interfaceStats.BytesReceived - bytesReceivedAtStartUp - double.Parse(lblBytesReceivedCount.Text)) / 1024;
                 lblUpSpeedCount.Text = bytesSentSpeed.ToString() + " kb/s";
+                lblDownSpeedCount.Text = bytesReceivedSpeed.ToString() + " kb/s";
             }
-                lblBytesReceivedCount.Text = interfaceStats.BytesReceived.ToString();
-                lblBytesSentCount.Text = interfaceStats.BytesSent.ToString();
+            // Display traffic that happened since the program was started
+            lblBytesSentCount.Text = (interfaceStats.BytesSent - bytesSentAtStartUp).ToString();
+            lblBytesReceivedCount.Text = (interfaceStats.BytesReceived - bytesReceivedAtStartUp).ToString();
         }
         void timer_Tick(object sender, EventArgs e)
         {
