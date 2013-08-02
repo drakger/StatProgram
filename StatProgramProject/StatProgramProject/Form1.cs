@@ -63,6 +63,10 @@ namespace WindowsFormsApplication2
             dataGridView1.ForeColor = vars.forecolor;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = vars.backcolor;
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = vars.forecolor;
+            dataGridView1.DefaultCellStyle.BackColor = vars.backcolor;
+            dataGridView1.DefaultCellStyle.ForeColor = vars.forecolor;
+            dataGridView1.RowHeadersDefaultCellStyle.BackColor = vars.backcolor;
+            dataGridView1.RowHeadersDefaultCellStyle.ForeColor = vars.forecolor;
             dataGridView1.GridColor = vars.forecolor;
             menuStrip1.Renderer = new ToolStripProfessionalRenderer(new TestColorTable());
         }
@@ -135,6 +139,21 @@ namespace WindowsFormsApplication2
         public void gHook_KeyUp(object sender, KeyEventArgs e)
         {
             vars.keys++;
+            foreach (DataGridViewRow row in this.dataGridView1.Rows)
+            {
+                if (Convert.ToString(row.Cells[0].Value) == ((char)e.KeyValue).ToString())
+                {
+                    Int64 keycount = Convert.ToInt64(row.Cells[1].Value);
+                    keycount++;
+                    row.Cells[1].Value = keycount;
+                }
+                else
+                {
+                    int index = dataGridView1.Rows.Count -1;
+                    dataGridView1.Rows[index].Cells[0].Value = ((char)e.KeyValue).ToString();
+                    dataGridView1.Rows[index].Cells[1].Value = 1;
+                }
+            }
             updateStats();
         }
 
