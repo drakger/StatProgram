@@ -45,10 +45,7 @@ namespace WindowsFormsApplication2
         }
         private void Mouse(object sender, EventArgs e)
         {
-            if (FormWindowState.Minimized != WindowState)
-            {
-                updateStats();
-            }
+            updateStats();
         }
         public void menucolor()
         {
@@ -65,10 +62,13 @@ namespace WindowsFormsApplication2
         }
         public void updateStats()
         {
-            lblLeftClickCount.Text = Convert.ToString(vars.lclick);
-            lblRightClickCount.Text = Convert.ToString(vars.rclick);
-            lblMiddleClickCount.Text = Convert.ToString(vars.mclick);
-            lblKeyPressCount.Text = Convert.ToString(vars.keys);
+            if (FormWindowState.Minimized != WindowState)
+            {
+                lblLeftClickCount.Text = Convert.ToString(vars.lclick);
+                lblRightClickCount.Text = Convert.ToString(vars.rclick);
+                lblMiddleClickCount.Text = Convert.ToString(vars.mclick);
+                lblKeyPressCount.Text = Convert.ToString(vars.keys);
+            }
         }
         private void InitializeNetworkInterface()
         {
