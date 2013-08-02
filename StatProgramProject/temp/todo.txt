@@ -1,4 +1,8 @@
 To-do:
 
 - new class for netstats
-- 
+- DataGridView sorting
+- DataGridView function keys display
+- internet connection connected/disconnected
+- Settings Form
+- ...
