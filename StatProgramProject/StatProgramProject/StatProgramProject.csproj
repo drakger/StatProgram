@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Netstat.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GlobalMouseHook.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
