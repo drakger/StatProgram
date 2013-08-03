@@ -275,8 +275,7 @@ namespace StatProgramProject
             string notifyicontext = "Download Speed: " + getNetDownSpeed().ToString() + " " + getNetDownSpeedType() + " Upload Speed: " + getNetUpSpeed().ToString() + " " + getNetUpSpeedType() +
                 "\n" + "Downloaded: " + getDataReceived().ToString() + " " + getDataReceivedType() + " Uploaded: " + getDataSent().ToString() + " " + getDataSentType();
             SetNotifyIconText(notifyIcon1, notifyicontext);
-            bool network = IsNetworkAvailable(1000);
-            if (network == true)
+            if (IsNetworkAvailable(1000))
             {
                 lblNetAvailable.Text = "ON";
             }
