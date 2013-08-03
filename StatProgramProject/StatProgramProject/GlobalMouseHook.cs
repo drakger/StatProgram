@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 
-namespace WindowsFormsApplication2
+namespace StatProgramProject
 {
     public static class MouseHook
         {
@@ -45,19 +45,19 @@ namespace WindowsFormsApplication2
                 if (nCode >= 0 && MouseMessages.WM_LBUTTONDOWN == (MouseMessages)wParam)  // Different Mouse Clicks
                 {
                     MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
-                    Form1.vars.lclick++;
+                    MainForm.vars.lclick++;
                     MouseAction(null, new EventArgs());
                 }
                 if (nCode >= 0 && MouseMessages.WM_RBUTTONDOWN == (MouseMessages)wParam)
                 {
                     MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
-                    Form1.vars.rclick++;
+                    MainForm.vars.rclick++;
                     MouseAction(null, new EventArgs());
                 }
                 if (nCode >= 0 && MouseMessages.WM_MBUTTONDOWN == (MouseMessages)wParam)
                 {
                     MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
-                    Form1.vars.mclick++;
+                    MainForm.vars.mclick++;
                     MouseAction(null, new EventArgs());
                 }
                 return CallNextHookEx(_hookID, nCode, wParam, lParam);

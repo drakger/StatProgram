@@ -9,10 +9,10 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
 
-namespace WindowsFormsApplication2
+namespace StatProgramProject
 {
 
-    public partial class Form1: Form
+    public partial class MainForm: Form
     {
         IPv4InterfaceStatistics interfaceStats = NetworkInterface.GetAllNetworkInterfaces()[0].GetIPv4Statistics();
         private NetworkInterface[] nicArr;
@@ -28,6 +28,10 @@ namespace WindowsFormsApplication2
         protected string dataSentType = "byte";
         protected string dataReceivedType = "byte";
 
+        void netTimer_Tick(object sender, EventArgs e)
+        {
+            updateNetStats();
+        }
         private void InitializeNetworkInterface()
         {
             // Grab all local interfaces to this computer
