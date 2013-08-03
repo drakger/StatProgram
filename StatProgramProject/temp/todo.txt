@@ -1,9 +1,9 @@
 To-do:
 
 - new class for netstats
+- new class for uptime (?)
 - DataGridView sorting
 - DataGridView function keys display
 - internet connection connected/disconnected
-- uptime
 - Settings Form
 - ...

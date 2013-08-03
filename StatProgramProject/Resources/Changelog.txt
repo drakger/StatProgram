@@ -1,5 +1,11 @@
 Changelog
 
+v0.05
+Uptime counter added
+
+v0.04
+Counts keystrokes for every key separately
+
 v0.03
 Internet statistics added, updating every second with timer (bytes sent, received, download/uplaod speed)
 
