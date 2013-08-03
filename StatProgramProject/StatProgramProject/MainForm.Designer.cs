@@ -61,6 +61,9 @@
             this.lblMiddleClickText = new System.Windows.Forms.Label();
             this.lblMiddleClickCount = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblNetAvailable = new System.Windows.Forms.Label();
+            this.lblUptime = new System.Windows.Forms.Label();
+            this.lblUptimeText = new System.Windows.Forms.Label();
             this.lblUpSpeedCount = new System.Windows.Forms.Label();
             this.lblDownSpeedCount = new System.Windows.Forms.Label();
             this.lblDataReceivedCount = new System.Windows.Forms.Label();
@@ -73,8 +76,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.KeyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PressesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblUptimeText = new System.Windows.Forms.Label();
-            this.lblUptime = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -337,6 +338,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.08354F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.49222F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.lblNetAvailable, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.lblUptime, 3, 6);
             this.tableLayoutPanel1.Controls.Add(this.lblUptimeText, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.lblKeyPressText, 3, 1);
@@ -374,6 +376,45 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 461);
             this.tableLayoutPanel1.TabIndex = 10;
+            // 
+            // lblNetAvailable
+            // 
+            this.lblNetAvailable.AutoSize = true;
+            this.lblNetAvailable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNetAvailable.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNetAvailable.Location = new System.Drawing.Point(290, 245);
+            this.lblNetAvailable.Name = "lblNetAvailable";
+            this.lblNetAvailable.Size = new System.Drawing.Size(62, 64);
+            this.lblNetAvailable.TabIndex = 24;
+            this.lblNetAvailable.Text = "ON";
+            this.lblNetAvailable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNetAvailable.UseMnemonic = false;
+            // 
+            // lblUptime
+            // 
+            this.lblUptime.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lblUptime, 2);
+            this.lblUptime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUptime.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUptime.Location = new System.Drawing.Point(358, 309);
+            this.lblUptime.Name = "lblUptime";
+            this.lblUptime.Size = new System.Drawing.Size(247, 36);
+            this.lblUptime.TabIndex = 22;
+            this.lblUptime.Text = "0s";
+            this.lblUptime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblUptimeText
+            // 
+            this.lblUptimeText.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lblUptimeText, 2);
+            this.lblUptimeText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUptimeText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUptimeText.Location = new System.Drawing.Point(358, 245);
+            this.lblUptimeText.Name = "lblUptimeText";
+            this.lblUptimeText.Size = new System.Drawing.Size(247, 64);
+            this.lblUptimeText.TabIndex = 21;
+            this.lblUptimeText.Text = "Program uptime:";
+            this.lblUptimeText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblUpSpeedCount
             // 
@@ -552,33 +593,7 @@
             this.PressesColumn.Name = "PressesColumn";
             this.PressesColumn.ReadOnly = true;
             // 
-            // lblUptimeText
-            // 
-            this.lblUptimeText.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.lblUptimeText, 2);
-            this.lblUptimeText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblUptimeText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUptimeText.Location = new System.Drawing.Point(358, 245);
-            this.lblUptimeText.Name = "lblUptimeText";
-            this.lblUptimeText.Size = new System.Drawing.Size(247, 64);
-            this.lblUptimeText.TabIndex = 21;
-            this.lblUptimeText.Text = "Program uptime:";
-            this.lblUptimeText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblUptime
-            // 
-            this.lblUptime.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.lblUptime, 2);
-            this.lblUptime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblUptime.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUptime.Location = new System.Drawing.Point(358, 309);
-            this.lblUptime.Name = "lblUptime";
-            this.lblUptime.Size = new System.Drawing.Size(247, 36);
-            this.lblUptime.TabIndex = 22;
-            this.lblUptime.Text = "0s";
-            this.lblUptime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -589,7 +604,7 @@
             this.ForeColor = System.Drawing.Color.Lime;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "StatProgram";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
@@ -647,6 +662,7 @@
         private System.Windows.Forms.ToolStripMenuItem statsToolStripMenuItem;
         private System.Windows.Forms.Label lblUptime;
         private System.Windows.Forms.Label lblUptimeText;
+        private System.Windows.Forms.Label lblNetAvailable;
     }
 }
 

@@ -27,6 +27,46 @@ namespace StatProgramProject
         protected long bytesSent, bytesReceived;
         protected string dataSentType = "byte";
         protected string dataReceivedType = "byte";
+ 
+        public static bool IsNetworkAvailable()
+        {
+            return IsNetworkAvailable(0);
+            //Filter connections below a specified speed, as well as virtual network cards.
+            //true if a network connection is available; otherwise, <c>false</c>.
+        }
+
+        //The minimum speed required. Passing 0 will not filter connection using speed.
+        public static bool IsNetworkAvailable(long minimumSpeed)
+        {
+            if (!NetworkInterface.GetIsNetworkAvailable())
+                return false;
+
+            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                // discard because of standard reasons
+                if ((ni.OperationalStatus != OperationalStatus.Up) ||
+                    (ni.NetworkInterfaceType == NetworkInterfaceType.Loopback) ||
+                    (ni.NetworkInterfaceType == NetworkInterfaceType.Tunnel))
+                    continue;
+
+                // this allow to filter modems, serial, etc.
+                // I use 10000000 as a minimum speed for most cases
+                if (ni.Speed < minimumSpeed)
+                    continue;
+
+                // discard virtual cards (virtual box, virtual pc, etc.)
+                if ((ni.Description.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0) ||
+                    (ni.Name.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0))
+                    continue;
+
+                // discard "Microsoft Loopback Adapter", it will not show as NetworkInterfaceType.Loopback but as Ethernet Card.
+                if (ni.Description.Equals("Microsoft Loopback Adapter", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                return true;
+            }
+            return false;
+        }
 
         void netTimer_Tick(object sender, EventArgs e)
         {
@@ -235,6 +275,15 @@ namespace StatProgramProject
             string notifyicontext = "Download Speed: " + getNetDownSpeed().ToString() + " " + getNetDownSpeedType() + " Upload Speed: " + getNetUpSpeed().ToString() + " " + getNetUpSpeedType() +
                 "\n" + "Downloaded: " + getDataReceived().ToString() + " " + getDataReceivedType() + " Uploaded: " + getDataSent().ToString() + " " + getDataSentType();
             SetNotifyIconText(notifyIcon1, notifyicontext);
+            bool network = IsNetworkAvailable(1000);
+            if (network == true)
+            {
+                lblNetAvailable.Text = "ON";
+            }
+            else
+            {
+                lblNetAvailable.Text = "OFF";
+            }
         }
         public static void SetNotifyIconText(NotifyIcon ni, string text)
         {
