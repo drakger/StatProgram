@@ -36,6 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.statsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.KeyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PressesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblUptimeText = new System.Windows.Forms.Label();
+            this.lblUptime = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -96,6 +98,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
             this.contextMenuStrip1.Size = new System.Drawing.Size(75, 48);
+            // 
+            // statsToolStripMenuItem
+            // 
+            this.statsToolStripMenuItem.Name = "statsToolStripMenuItem";
+            this.statsToolStripMenuItem.Size = new System.Drawing.Size(74, 22);
+            this.statsToolStripMenuItem.Text = "Stats";
+            this.statsToolStripMenuItem.Click += new System.EventHandler(this.statsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -132,7 +141,7 @@
             this.fontToolStripMenuItem,
             this.backgroundToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // fontToolStripMenuItem
@@ -152,7 +161,7 @@
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
             // 
@@ -328,6 +337,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.08354F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.49222F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.lblUptime, 3, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblUptimeText, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.lblKeyPressText, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblUpSpeedCount, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.lblDownSpeedCount, 1, 8);
@@ -541,12 +552,31 @@
             this.PressesColumn.Name = "PressesColumn";
             this.PressesColumn.ReadOnly = true;
             // 
-            // statsToolStripMenuItem
+            // lblUptimeText
             // 
-            this.statsToolStripMenuItem.Name = "statsToolStripMenuItem";
-            this.statsToolStripMenuItem.Size = new System.Drawing.Size(74, 22);
-            this.statsToolStripMenuItem.Text = "Stats";
-            this.statsToolStripMenuItem.Click += new System.EventHandler(this.statsToolStripMenuItem_Click);
+            this.lblUptimeText.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lblUptimeText, 2);
+            this.lblUptimeText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUptimeText.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUptimeText.Location = new System.Drawing.Point(358, 245);
+            this.lblUptimeText.Name = "lblUptimeText";
+            this.lblUptimeText.Size = new System.Drawing.Size(247, 64);
+            this.lblUptimeText.TabIndex = 21;
+            this.lblUptimeText.Text = "Program uptime:";
+            this.lblUptimeText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblUptime
+            // 
+            this.lblUptime.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lblUptime, 2);
+            this.lblUptime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUptime.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUptime.Location = new System.Drawing.Point(358, 309);
+            this.lblUptime.Name = "lblUptime";
+            this.lblUptime.Size = new System.Drawing.Size(247, 36);
+            this.lblUptime.TabIndex = 22;
+            this.lblUptime.Text = "0s";
+            this.lblUptime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form1
             // 
@@ -615,6 +645,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PressesColumn;
         private System.Windows.Forms.ToolStripMenuItem statsToolStripMenuItem;
+        private System.Windows.Forms.Label lblUptime;
+        private System.Windows.Forms.Label lblUptimeText;
     }
 }
 

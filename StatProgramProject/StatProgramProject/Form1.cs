@@ -16,13 +16,13 @@ namespace WindowsFormsApplication2
 {
     public partial class Form1 : Form
     {
-        string programVersion = "0.03";
+        string programVersion = "0.05";
         GlobalKeyboardHook kHook;
 
         // Net Stats
         IPv4InterfaceStatistics interfaceStats = NetworkInterface.GetAllNetworkInterfaces()[0].GetIPv4Statistics();
         private NetworkInterface[] nicArr;
-        private const double timerUpdate = 1000;
+        private const double NET_TIMER_UPDATE = 1000;
         private Timer netTimer;
         long bytesSentAtStartUp, bytesReceivedAtStartUp;
         bool startUp = true;
@@ -33,6 +33,13 @@ namespace WindowsFormsApplication2
         protected long bytesSent, bytesReceived;
         protected string dataSentType = "byte";
         protected string dataReceivedType = "byte";
+
+        // Uptime
+
+        private const double UPTIME_TIMER_UPDATE = 1000;
+        private Timer uptimeTimer;
+        long totalSeconds = 0;
+        int weeks = 0, days = 0, hours = 0, minutes = 0, seconds = 0;
 
         public Form1()
         {
@@ -106,12 +113,12 @@ namespace WindowsFormsApplication2
             netUpSpeedType = s;
         }
 
-        private string getNetDownSpeedType()
+        public string getNetDownSpeedType()
         {
             return netDownSpeedType;
         }
 
-        private string getNetUpSpeedType()
+        public string getNetUpSpeedType()
         {
             return netUpSpeedType;
         }
@@ -164,12 +171,12 @@ namespace WindowsFormsApplication2
             setNetUpSpeedType("byte/s");
         }
 
-        private int getNetDownSpeed()
+        public int getNetDownSpeed()
         {
             return netDownSpeed;
         }
 
-        private int getNetUpSpeed()
+        public int getNetUpSpeed()
         {
             return netUpSpeed;
         }
@@ -224,12 +231,12 @@ namespace WindowsFormsApplication2
                 dataReceived = (int)bytesReceived / 1024 / 1024 / 1024;
         }
 
-        private int getDataSent()
+        public int getDataSent()
         {
             return dataSent;
         }
 
-        private int getDataReceived()
+        public int getDataReceived()
         {
             return dataReceived;
         }
@@ -244,12 +251,12 @@ namespace WindowsFormsApplication2
             dataReceivedType = s;
         }
 
-        private string getDataSentType()
+        public string getDataSentType()
         {
             return dataSentType;
         }
 
-        private string getDataReceivedType()
+        public string getDataReceivedType()
         {
             return dataReceivedType;
         }
@@ -257,9 +264,14 @@ namespace WindowsFormsApplication2
         private void InitializeTimer()
         {
             netTimer = new Timer();
-            netTimer.Interval = (int)timerUpdate;
-            netTimer.Tick += new EventHandler(timer_Tick);
+            netTimer.Interval = (int)NET_TIMER_UPDATE;
+            netTimer.Tick += new EventHandler(netTimer_Tick);
             netTimer.Start();
+
+            uptimeTimer = new Timer();
+            uptimeTimer.Interval = (int)UPTIME_TIMER_UPDATE;
+            uptimeTimer.Tick += new EventHandler(uptimeTimer_Tick);
+            uptimeTimer.Start();
         }
         public void updateNetStats()
         {
@@ -311,9 +323,60 @@ namespace WindowsFormsApplication2
             if ((bool)t.GetField("added", hidden).GetValue(ni))
                 t.GetMethod("UpdateIcon", hidden).Invoke(ni, new object[] { true });
         }
-        void timer_Tick(object sender, EventArgs e)
+        void netTimer_Tick(object sender, EventArgs e)
         {
             updateNetStats();
+        }
+
+        void uptimeTimer_Tick(object sender, EventArgs e)
+        {
+            updateUptime();
+        }
+
+        public long getUptime()
+        {
+            return totalSeconds;
+        }
+
+        private void setUptime(long i)
+        {
+            totalSeconds = i;
+        }
+
+        public void updateUptime()
+        {
+            totalSeconds++;
+            seconds++;
+            if (seconds == 60)
+            {
+                seconds -= 60;
+                minutes++;
+                if (minutes == 60)
+                {
+                    minutes -= 60;
+                    hours++;
+                    if (hours == 24)
+                    {
+                        hours -= 24;
+                        days++;
+                        if (days == 7)
+                        {
+                            days -= 7;
+                            weeks++;
+                        }
+                    }
+                }
+            }
+            if (weeks > 0)
+                lblUptime.Text = weeks.ToString() + "w " + days.ToString() + "d " + hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString() + "s";
+            else if (days > 0)
+                lblUptime.Text = days.ToString() + "d " + hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString() + "s";
+            else if (hours > 0)
+                lblUptime.Text = hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString() + "s";
+            else if (minutes > 0)
+                lblUptime.Text = minutes.ToString() + "m " + seconds.ToString() + "s";
+            else
+                lblUptime.Text = seconds.ToString() + "s";
         }
 
         public bool isMinimized()
