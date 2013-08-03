@@ -23,8 +23,7 @@ namespace StatProgramProject
         bool reMaximized = false;
         protected string netUpSpeedType = "byte/s";
         protected string netDownSpeedType = "byte/s";
-        protected int netUpSpeed, netDownSpeed, dataSent, dataReceived;
-        protected long bytesSent, bytesReceived;
+        protected long bytesSent, bytesReceived, netUpSpeed, netDownSpeed, dataSent, dataReceived;
         protected string dataSentType = "byte";
         protected string dataReceivedType = "byte";
  
@@ -98,7 +97,7 @@ namespace StatProgramProject
             return netUpSpeedType;
         }
 
-        private void setNetDownSpeed(int n)
+        private void setNetDownSpeed(long n)
         {
             if (n > 1024)
             {
@@ -122,7 +121,7 @@ namespace StatProgramProject
             setNetDownSpeedType("byte/s");
         }
 
-        private void setNetUpSpeed(int n)
+        private void setNetUpSpeed(long n)
         {
             if (n > 1024)
             {
@@ -146,12 +145,12 @@ namespace StatProgramProject
             setNetUpSpeedType("byte/s");
         }
 
-        public int getNetDownSpeed()
+        public long getNetDownSpeed()
         {
             return netDownSpeed;
         }
 
-        public int getNetUpSpeed()
+        public long getNetUpSpeed()
         {
             return netUpSpeed;
         }
@@ -172,13 +171,13 @@ namespace StatProgramProject
                     setDataSentType("kb");
             }
             if (getDataSentType() == "byte")
-                dataSent = (int)bytesSent;
+                dataSent = bytesSent;
             else if (getDataSentType() == "kb")
-                dataSent = (int)bytesSent / 1024;
+                dataSent = bytesSent / 1024;
             else if (getDataSentType() == "Mb")
-                dataSent = (int)bytesSent / 1024 / 1024;
+                dataSent = bytesSent / 1024 / 1024;
             else if (getDataSentType() == "Gb")
-                dataSent = (int)bytesSent / 1024 / 1024 / 1024;
+                dataSent = bytesSent / 1024 / 1024 / 1024;
         }
 
         private void setDataReceived(long n1, long n2)
@@ -197,21 +196,21 @@ namespace StatProgramProject
                     setDataReceivedType("kb");
             }
             if (getDataReceivedType() == "byte")
-                dataReceived = (int)bytesReceived;
+                dataReceived = bytesReceived;
             else if (getDataReceivedType() == "kb")
-                dataReceived = (int)bytesReceived / 1024;
+                dataReceived = bytesReceived / 1024;
             else if (getDataReceivedType() == "Mb")
-                dataReceived = (int)bytesReceived / 1024 / 1024;
+                dataReceived = bytesReceived / 1024 / 1024;
             else if (getDataReceivedType() == "Gb")
-                dataReceived = (int)bytesReceived / 1024 / 1024 / 1024;
+                dataReceived = bytesReceived / 1024 / 1024 / 1024;
         }
 
-        public int getDataSent()
+        public long getDataSent()
         {
             return dataSent;
         }
 
-        public int getDataReceived()
+        public long getDataReceived()
         {
             return dataReceived;
         }
