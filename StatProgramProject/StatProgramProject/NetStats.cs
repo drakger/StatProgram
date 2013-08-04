@@ -269,19 +269,21 @@ namespace StatProgramProject
                 lblDataSentCount.Text = getDataSent().ToString() + " " + getDataSentType();
                 lblDataReceivedCount.Text = getDataReceived().ToString() + " " + getDataReceivedType();
 
+                if (IsNetworkAvailable(1000))
+                {
+                    picNetAvailable.ImageLocation = @"images\yesinternet.png";
+                }
+                else
+                {
+                    picNetAvailable.ImageLocation = @"nointernet.png";
+                }
+
                 if (reMaximized) reMaximized = false;
+
             }
             string notifyicontext = "Download Speed: " + getNetDownSpeed().ToString() + " " + getNetDownSpeedType() + " Upload Speed: " + getNetUpSpeed().ToString() + " " + getNetUpSpeedType() +
                 "\n" + "Downloaded: " + getDataReceived().ToString() + " " + getDataReceivedType() + " Uploaded: " + getDataSent().ToString() + " " + getDataSentType();
-            SetNotifyIconText(notifyIcon1, notifyicontext);
-            if (IsNetworkAvailable(1000))
-            {
-                picNetAvailable.ImageLocation = @"images\yesinternet.png";
-            }
-            else
-            {
-                picNetAvailable.ImageLocation = @"nointernet.png";
-            }
+            SetNotifyIconText(notifyIcon1, notifyicontext);  
         }
         public static void SetNotifyIconText(NotifyIcon ni, string text)
         {
