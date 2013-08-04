@@ -271,7 +271,7 @@ namespace StatProgramProject
 
                 if (IsNetworkAvailable(1000))
                 {
-                    picNetAvailable.ImageLocation = @"images\yesinternet.png";
+                    picNetAvailable.ImageLocation = @"yesinternet.png";
                 }
                 else
                 {
