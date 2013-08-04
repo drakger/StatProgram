@@ -123,6 +123,7 @@ namespace StatProgramProject
             public static bool exit;
             public static Color backcolor;
             public static Color forecolor;
+            public static bool netpictureh;
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -133,5 +134,18 @@ namespace StatProgramProject
                 e.Cancel = true;
             }
         }
+
+        private void picNetAvailable_LoadCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                if (vars.netpictureh == false)
+                {
+                    vars.netpictureh = true;
+                    MessageBox.Show("Some files were not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
     }
 }

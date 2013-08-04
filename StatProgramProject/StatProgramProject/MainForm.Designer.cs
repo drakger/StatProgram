@@ -591,6 +591,7 @@
             this.picNetAvailable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picNetAvailable.TabIndex = 25;
             this.picNetAvailable.TabStop = false;
+            this.picNetAvailable.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.picNetAvailable_LoadCompleted);
             // 
             // MainForm
             // 
