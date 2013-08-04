@@ -26,45 +26,28 @@ namespace StatProgramProject
         protected long bytesSent, bytesReceived, netUpSpeed, netDownSpeed, dataSent, dataReceived;
         protected string dataSentType = "byte";
         protected string dataReceivedType = "byte";
- 
-        public static bool IsNetworkAvailable()
-        {
-            return IsNetworkAvailable(0);
-            //Filter connections below a specified speed, as well as virtual network cards.
-            //true if a network connection is available; otherwise, <c>false</c>.
-        }
 
         //The minimum speed required. Passing 0 will not filter connection using speed.
-        public static bool IsNetworkAvailable(long minimumSpeed)
+
+        public static bool IsNetworkAvailable()
         {
-            if (!NetworkInterface.GetIsNetworkAvailable())
-                return false;
-
-            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+            Ping ping = new Ping();
+            try
             {
-                // discard because of standard reasons
-                if ((ni.OperationalStatus != OperationalStatus.Up) ||
-                    (ni.NetworkInterfaceType == NetworkInterfaceType.Loopback) ||
-                    (ni.NetworkInterfaceType == NetworkInterfaceType.Tunnel))
-                    continue;
-
-                // this allow to filter modems, serial, etc.
-                // I use 10000000 as a minimum speed for most cases
-                if (ni.Speed < minimumSpeed)
-                    continue;
-
-                // discard virtual cards (virtual box, virtual pc, etc.)
-                if ((ni.Description.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0) ||
-                    (ni.Name.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0))
-                    continue;
-
-                // discard "Microsoft Loopback Adapter", it will not show as NetworkInterfaceType.Loopback but as Ethernet Card.
-                if (ni.Description.Equals("Microsoft Loopback Adapter", StringComparison.OrdinalIgnoreCase))
-                    continue;
-
-                return true;
+                PingReply pingStatus = ping.Send("google.com");
+                if (pingStatus.Status == IPStatus.Success)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            return false;
+            catch (Exception)
+            {
+                return false;
+            }    
         }
 
         void netTimer_Tick(object sender, EventArgs e)
@@ -269,7 +252,7 @@ namespace StatProgramProject
                 lblDataSentCount.Text = getDataSent().ToString() + " " + getDataSentType();
                 lblDataReceivedCount.Text = getDataReceived().ToString() + " " + getDataReceivedType();
 
-                if (IsNetworkAvailable(1000))
+                if (IsNetworkAvailable())
                 {
                     picNetAvailable.ImageLocation = @"yesinternet.png";
                 }
