@@ -34,6 +34,7 @@ namespace StatProgramProject
             vars.backcolor = Color.Black;
             vars.forecolor = Color.Lime;
             menucolor();
+            netavailable();
         }
         private void Mouse(object sender, EventArgs e)
         {
@@ -61,7 +62,15 @@ namespace StatProgramProject
             uptimeTimer.Interval = (int)UPTIME_TIMER_UPDATE;
             uptimeTimer.Tick += new EventHandler(uptimeTimer_Tick);
             uptimeTimer.Start();
+
+            netcheckTimer = new Timer();
+            netcheckTimer.Interval = (int)NETCHECK_TIMER_UPDATE;
+            netcheckTimer.Tick += new EventHandler(netcheckTimer_Tick);
+            netcheckTimer.Start();
+
         }
+
+
         
         public bool isMinimized()
         {
@@ -145,6 +154,11 @@ namespace StatProgramProject
                     MessageBox.Show("Some files were not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void picNetAvailable_Click(object sender, EventArgs e)
+        {
+            netavailable();
         }
 
     }

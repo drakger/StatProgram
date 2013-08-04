@@ -17,7 +17,9 @@ namespace StatProgramProject
         IPv4InterfaceStatistics interfaceStats = NetworkInterface.GetAllNetworkInterfaces()[0].GetIPv4Statistics();
         private NetworkInterface[] nicArr;
         private const double NET_TIMER_UPDATE = 1000;
+        private const int NETCHECK_TIMER_UPDATE = 60000;
         private Timer netTimer;
+        private Timer netcheckTimer;
         long bytesSentAtStartUp, bytesReceivedAtStartUp;
         bool startUp = true;
         bool reMaximized = false;
@@ -48,6 +50,26 @@ namespace StatProgramProject
             {
                 return false;
             }    
+        }
+
+        public void netcheckTimer_Tick(object sender, EventArgs e)
+        {
+            netavailable();
+        }
+
+        public void netavailable()
+        {
+            if (!isMinimized())
+            {
+                if (IsNetworkAvailable())
+                {
+                    picNetAvailable.ImageLocation = @"yesinternet.png";
+                }
+                else
+                {
+                    picNetAvailable.ImageLocation = @"nointernet.png";
+                }
+            }
         }
 
         void netTimer_Tick(object sender, EventArgs e)
@@ -217,6 +239,8 @@ namespace StatProgramProject
         {
             return dataReceivedType;
         }
+  
+
         public void updateNetStats()
         {
             if (!isMinimized())
@@ -251,16 +275,6 @@ namespace StatProgramProject
                 setDataReceived(interfaceStats.BytesReceived, bytesReceivedAtStartUp);
                 lblDataSentCount.Text = getDataSent().ToString() + " " + getDataSentType();
                 lblDataReceivedCount.Text = getDataReceived().ToString() + " " + getDataReceivedType();
-
-                if (IsNetworkAvailable())
-                {
-                    picNetAvailable.ImageLocation = @"yesinternet.png";
-                }
-                else
-                {
-                    picNetAvailable.ImageLocation = @"nointernet.png";
-                }
-
                 if (reMaximized) reMaximized = false;
 
             }
@@ -268,6 +282,7 @@ namespace StatProgramProject
                 "\n" + "Downloaded: " + getDataReceived().ToString() + " " + getDataReceivedType() + " Uploaded: " + getDataSent().ToString() + " " + getDataSentType();
             SetNotifyIconText(notifyIcon1, notifyicontext);  
         }
+    
         public static void SetNotifyIconText(NotifyIcon ni, string text)
         {
             if (text.Length >= 128) throw new ArgumentOutOfRangeException("Text limited to 127 characters");
