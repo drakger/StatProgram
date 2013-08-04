@@ -276,11 +276,11 @@ namespace StatProgramProject
             SetNotifyIconText(notifyIcon1, notifyicontext);
             if (IsNetworkAvailable(1000))
             {
-                lblNetAvailable.Text = "ON";
+                picNetAvailable.ImageLocation = @"images\yesinternet.png";
             }
             else
             {
-                lblNetAvailable.Text = "OFF";
+                picNetAvailable.ImageLocation = @"nointernet.png";
             }
         }
         public static void SetNotifyIconText(NotifyIcon ni, string text)

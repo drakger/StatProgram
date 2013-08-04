@@ -61,7 +61,6 @@
             this.lblMiddleClickText = new System.Windows.Forms.Label();
             this.lblMiddleClickCount = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblNetAvailable = new System.Windows.Forms.Label();
             this.lblUptime = new System.Windows.Forms.Label();
             this.lblUptimeText = new System.Windows.Forms.Label();
             this.lblUpSpeedCount = new System.Windows.Forms.Label();
@@ -76,10 +75,12 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.KeyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PressesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picNetAvailable = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNetAvailable)).BeginInit();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -338,7 +339,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.08354F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.49222F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.lblNetAvailable, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.lblUptime, 3, 6);
             this.tableLayoutPanel1.Controls.Add(this.lblUptimeText, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.lblKeyPressText, 3, 1);
@@ -361,6 +361,7 @@
             this.tableLayoutPanel1.Controls.Add(this.lblKeyboardStats, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblKeyPressCount, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.picNetAvailable, 2, 5);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 27);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
@@ -376,19 +377,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 461);
             this.tableLayoutPanel1.TabIndex = 10;
-            // 
-            // lblNetAvailable
-            // 
-            this.lblNetAvailable.AutoSize = true;
-            this.lblNetAvailable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNetAvailable.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNetAvailable.Location = new System.Drawing.Point(290, 245);
-            this.lblNetAvailable.Name = "lblNetAvailable";
-            this.lblNetAvailable.Size = new System.Drawing.Size(62, 64);
-            this.lblNetAvailable.TabIndex = 24;
-            this.lblNetAvailable.Text = "ON";
-            this.lblNetAvailable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblNetAvailable.UseMnemonic = false;
             // 
             // lblUptime
             // 
@@ -593,6 +581,17 @@
             this.PressesColumn.Name = "PressesColumn";
             this.PressesColumn.ReadOnly = true;
             // 
+            // picNetAvailable
+            // 
+            this.picNetAvailable.BackColor = System.Drawing.Color.Transparent;
+            this.picNetAvailable.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picNetAvailable.Location = new System.Drawing.Point(290, 248);
+            this.picNetAvailable.Name = "picNetAvailable";
+            this.picNetAvailable.Size = new System.Drawing.Size(62, 50);
+            this.picNetAvailable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picNetAvailable.TabIndex = 25;
+            this.picNetAvailable.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -614,6 +613,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNetAvailable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -662,7 +662,7 @@
         private System.Windows.Forms.ToolStripMenuItem statsToolStripMenuItem;
         private System.Windows.Forms.Label lblUptime;
         private System.Windows.Forms.Label lblUptimeText;
-        private System.Windows.Forms.Label lblNetAvailable;
+        private System.Windows.Forms.PictureBox picNetAvailable;
     }
 }
 
