@@ -63,11 +63,11 @@ namespace StatProgramProject
             {
 
                 // Calculate the current font size
-                label.Font = new Font(label.Font.FontFamily, initialFontSize *
+                label.Font = new Font(label.Font.FontFamily, initialFontSize  *
                     (proportionalNewWidth > proportionalNewHeight ? proportionalNewHeight : proportionalNewWidth),
                     label.Font.Style);
             }
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.ColumnHeadersDefaultCellStyle.Font.FontFamily, dataGridColumnHeadersinitialFontSize *
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.ColumnHeadersDefaultCellStyle.Font.FontFamily, dataGridColumnHeadersinitialFontSize  *
                     (proportionalNewWidth > proportionalNewHeight ? proportionalNewHeight : proportionalNewWidth),
                     dataGridView1.ColumnHeadersDefaultCellStyle.Font.Style);
             dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.DefaultCellStyle.Font.FontFamily, dataGridDefaultCellinitalFontSize *
