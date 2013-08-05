@@ -164,7 +164,7 @@ namespace StatProgramProject
         private void setDataSent(long n1, long n2)
         {
             totalBytesSent = (n1 - n2);
-            bytesSent = totalBytesSent;
+            bytesSent = totalBytesSent - gbSent * 1024 * 1024 * 1024 - mbSent * 1024 * 1024 - kbSent * 1024;
             while (bytesSent > 1024)
             {
                 bytesSent -= 1024;
@@ -194,8 +194,6 @@ namespace StatProgramProject
                 {
                     if (totalBytesSent > (1024 * 1024 * 1024))
                     {
-                        gb++;
-                        bytesSent -= 1024 * 1024 * 1024;
                         setDataSentType("Gb");
                     }
                     else
@@ -217,7 +215,7 @@ namespace StatProgramProject
         private void setDataReceived(long n1, long n2)
         {
             totalBytesReceived = (n1 - n2);
-            bytesReceived = totalBytesReceived;
+            bytesReceived = totalBytesReceived - gbReceived * 1024 * 1024 * 1024 - mbReceived * 1024 * 1024 - kbReceived * 1024;
             while (bytesReceived > 1024)
             {
                 bytesReceived -= 1024;
