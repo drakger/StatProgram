@@ -163,7 +163,8 @@ namespace StatProgramProject
 
         private void setDataSent(long n1, long n2)
         {
-            bytesSent = (n1 - n2);
+            totalBytesSent = (n1 - n2);
+            bytesSent = totalBytesSent;
             while (bytesSent > 1024)
             {
                 bytesSent -= 1024;
@@ -215,7 +216,8 @@ namespace StatProgramProject
 
         private void setDataReceived(long n1, long n2)
         {
-            bytesReceived = (n1 - n2);
+            totalBytesReceived = (n1 - n2);
+            bytesReceived = totalBytesReceived;
             while (bytesReceived > 1024)
             {
                 bytesReceived -= 1024;
