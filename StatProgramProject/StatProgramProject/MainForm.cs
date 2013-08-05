@@ -18,10 +18,10 @@ namespace StatProgramProject
     {
         string programVersion = "0.05";
         GlobalKeyboardHook kHook;
-        // For label font resize
+        //For  font resize
         public int initialWidth;
         public int initialHeight;
-        public float initialFontSize;
+        public float initialFontSize, dataGridColumnHeadersinitialFontSize, dataGridDefaultCellinitalFontSize;
 
         public MainForm()
         {
@@ -39,10 +39,12 @@ namespace StatProgramProject
             vars.forecolor = Color.Lime;
             menucolor();
             netavailable();
-            // Sets the initial size of the variables for label font resize
+            // Sets the initial size of the variables for font resize
             initialWidth = Width;
             initialHeight = Height;
             initialFontSize = lblMouseStats.Font.Size;
+            dataGridColumnHeadersinitialFontSize = dataGridView1.ColumnHeadersDefaultCellStyle.Font.Size;
+            dataGridDefaultCellinitalFontSize = dataGridView1.DefaultCellStyle.Font.Size;
             lblMouseStats.Resize += LabelFont_Resize;
         }
 
@@ -65,6 +67,12 @@ namespace StatProgramProject
                     (proportionalNewWidth > proportionalNewHeight ? proportionalNewHeight : proportionalNewWidth),
                     label.Font.Style);
             }
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.ColumnHeadersDefaultCellStyle.Font.FontFamily, dataGridColumnHeadersinitialFontSize *
+                    (proportionalNewWidth > proportionalNewHeight ? proportionalNewHeight : proportionalNewWidth),
+                    dataGridView1.ColumnHeadersDefaultCellStyle.Font.Style);
+            dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.DefaultCellStyle.Font.FontFamily, dataGridDefaultCellinitalFontSize *
+                    (proportionalNewWidth > proportionalNewHeight ? proportionalNewHeight : proportionalNewWidth),
+                   dataGridView1.DefaultCellStyle.Font.Style);
             ResumeLayout();
         }
 
