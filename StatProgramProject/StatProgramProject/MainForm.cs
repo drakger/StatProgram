@@ -63,7 +63,7 @@ namespace StatProgramProject
             {
 
                 // Calculate the current font size
-                label.Font = new Font(label.Font.FontFamily, initialFontSize  *
+                label.Font = new Font(label.Font.FontFamily, (initialFontSize-2)  *
                     (proportionalNewWidth > proportionalNewHeight ? proportionalNewHeight : proportionalNewWidth),
                     label.Font.Style);
             }
