@@ -264,23 +264,68 @@ namespace StatProgramProject
 
         public string getDataSent()
         {
+            string mbSentPercentage, kbSentPercentage, byteSentPercentage;
             if (getDataSentType() == "Gb")
-                return gbSent.ToString() + "." + Math.Round(mbSent / 1024.0 * 100);
+            {
+                if (Math.Round(mbSent / 1024.0 * 100) < 10)
+                    mbSentPercentage = "0" + Math.Round(mbSent / 1024.0 * 100);
+                else if (Math.Round(mbSent / 1024.0 * 100) == 100)
+                    mbSentPercentage = "99";
+                else mbSentPercentage = Math.Round(mbSent / 1024.0 * 100).ToString();
+                return gbSent.ToString() + "." + mbSentPercentage;
+            }
             else if (getDataSentType() == "Mb")
-                return mbSent.ToString() + "." + Math.Round(kbSent / 1024.0 * 100);
+            {
+                if (Math.Round(kbSent / 1024.0 * 100) < 10)
+                    kbSentPercentage = "0" + Math.Round(kbSent / 1024.0 * 100);
+                else if (Math.Round(kbSent / 1024.0 * 100) == 100)
+                    kbSentPercentage = "99";
+                else kbSentPercentage = Math.Round(kbSent / 1024.0 * 100).ToString();
+                return mbSent.ToString() + "." + kbSentPercentage;
+            }
             else if (getDataSentType() == "kb")
-                return kbSent.ToString() + "." + Math.Round(bytesSent / 1024.0 * 100);
+            {
+                if (Math.Round(bytesSent / 1024.0 * 100) <10)
+                    byteSentPercentage = "0" + Math.Round(bytesSent / 1024.0 * 100);
+                else if (Math.Round(bytesSent / 1024.0 * 100) == 100)
+                    byteSentPercentage = "99";
+                else byteSentPercentage = Math.Round(bytesSent / 1024.0 * 100).ToString();
+                return kbSent.ToString() + "." + byteSentPercentage;
+            }
+
             else return bytesSent.ToString();
         }
 
         public string getDataReceived()
         {
+            string mbReceivedPercentage, kbReceivedPercentage, byteReceivedPercentage;
             if (getDataReceivedType() == "Gb")
-                return gbReceived.ToString() + "." + Math.Round(mbReceived / 1024.0 * 100);
+            {
+                if (Math.Round(mbReceived / 1024.0 * 100) < 10)
+                    mbReceivedPercentage = "0" + Math.Round(mbReceived / 1024.0 * 100);
+                else if (Math.Round(mbReceived / 1024.0 * 100) == 100)
+                    mbReceivedPercentage = "99";
+                else mbReceivedPercentage = Math.Round(mbReceived / 1024.0 * 100).ToString();
+                return gbReceived.ToString() + "." + mbReceivedPercentage;
+            }
             else if (getDataReceivedType() == "Mb")
-                return mbReceived.ToString() + "." + Math.Round(kbReceived / 1024.0 * 100);
+            {
+                if (Math.Round(kbReceived / 1024.0 * 100) < 10)
+                    kbReceivedPercentage = "0" + Math.Round(kbReceived / 1024.0 * 100);
+                else if (Math.Round(kbReceived / 1024.0 * 100) == 100)
+                    kbReceivedPercentage = "99";
+                else kbReceivedPercentage = Math.Round(kbReceived / 1024.0 * 100).ToString();
+                return mbReceived.ToString() + "." + kbReceivedPercentage;
+            }
             else if (getDataReceivedType() == "kb")
-                return kbReceived.ToString() + "." + Math.Round(bytesReceived / 1024.0 * 100);
+            {
+                if (Math.Round(bytesReceived / 1024.0 * 100) < 10)
+                    byteReceivedPercentage = "0" + Math.Round(bytesReceived / 1024.0 * 100);
+                else if (Math.Round(bytesReceived / 1024.0 * 100) == 100)
+                    byteReceivedPercentage = "99";
+                else byteReceivedPercentage = Math.Round(bytesReceived / 1024.0 * 100).ToString();
+                return kbReceived.ToString() + "." + byteReceivedPercentage;
+            }
             else return bytesReceived.ToString();
         }
 
