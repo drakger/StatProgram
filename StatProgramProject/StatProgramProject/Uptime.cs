@@ -10,7 +10,7 @@ namespace StatProgramProject
 {
     public partial class MainForm:Form
     {
-        private const double UPTIME_TIMER_UPDATE = 1000;
+        private const int UPTIME_TIMER_UPDATE = 1000;
         private Timer uptimeTimer;
         long totalSeconds = 0;
         int weeks = 0, days = 0, hours = 0, minutes = 0, seconds = 0;

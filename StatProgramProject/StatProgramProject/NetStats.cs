@@ -16,7 +16,7 @@ namespace StatProgramProject
     {
         IPv4InterfaceStatistics interfaceStats = NetworkInterface.GetAllNetworkInterfaces()[0].GetIPv4Statistics();
         private NetworkInterface[] nicArr;
-        private const double NET_TIMER_UPDATE = 1000;
+        private const int NET_TIMER_UPDATE = 1000;
         private const int NETCHECK_TIMER_UPDATE = 60000;
         private Timer netTimer;
         private Timer netcheckTimer;
@@ -25,7 +25,8 @@ namespace StatProgramProject
         bool reMaximized = false;
         protected string netUpSpeedType = "byte/s";
         protected string netDownSpeedType = "byte/s";
-        protected long bytesSent, bytesReceived, netUpSpeed, netDownSpeed, dataSent, dataReceived;
+        protected long totalBytesSent, totalBytesReceived, bytesSent, bytesReceived, netUpSpeed, netDownSpeed;
+        protected int gbSent, mbSent, kbSent, gbReceived, mbReceived, kbReceived;
         protected string dataSentType = "byte";
         protected string dataReceivedType = "byte";
 
@@ -163,12 +164,39 @@ namespace StatProgramProject
         private void setDataSent(long n1, long n2)
         {
             bytesSent = (n1 - n2);
-            if (bytesSent > (1024))
+            while (bytesSent > 1024)
             {
-                if (bytesSent > (1024 * 1024))
+                bytesSent -= 1024;
+                kbSent++;
+                if (kbSent == 1024)
                 {
-                    if (bytesSent > (1024 * 1024 * 1024))
+                    kbSent -= 1024;
+                    mbSent++;
+                    if (mbSent == 1024)
+                    {
+                        mbSent -= 1024;
+                        gbSent++;
+                    }
+                }
+            }
+
+            if (gbSent > 0)
+                setDataSentType("Gb");
+            else if (mbSent > 0)
+                setDataSentType("Mb");
+            else if (kbSent > 0)
+                setDataSentType("kb");
+
+          /*  if (totalBytesSent > (1024))
+            {
+                if (totalBytesSent > (1024 * 1024))
+                {
+                    if (totalBytesSent > (1024 * 1024 * 1024))
+                    {
+                        gb++;
+                        bytesSent -= 1024 * 1024 * 1024;
                         setDataSentType("Gb");
+                    }
                     else
                         setDataSentType("Mb");
                 }
@@ -176,23 +204,47 @@ namespace StatProgramProject
                     setDataSentType("kb");
             }
             if (getDataSentType() == "byte")
-                dataSent = bytesSent;
+                dataSent = totalBytesSent;
             else if (getDataSentType() == "kb")
-                dataSent = bytesSent / 1024;
+                dataSent = totalBytesSent / 1024;
             else if (getDataSentType() == "Mb")
-                dataSent = bytesSent / 1024 / 1024;
+                dataSent = totalBytesSent / 1024 / 1024;
             else if (getDataSentType() == "Gb")
-                dataSent = bytesSent / 1024 / 1024 / 1024;
+                dataSent = totalBytesSent / 1024 / 1024 / 1024; */
         }
 
         private void setDataReceived(long n1, long n2)
         {
             bytesReceived = (n1 - n2);
-            if (bytesReceived > (1024))
+            while (bytesReceived > 1024)
             {
-                if (bytesReceived > (1024 * 1024))
+                bytesReceived -= 1024;
+                kbReceived++;
+                if (kbReceived == 1024)
                 {
-                    if (bytesReceived > (1024 * 1024 * 1024))
+                    kbReceived -= 1024;
+                    mbReceived++;
+                    if (mbReceived == 1024)
+                    {
+                        mbReceived -= 1024;
+                        gbReceived++;
+                    }
+                }
+            }
+
+            if (gbReceived > 0)
+                setDataReceivedType("Gb");
+            else if (mbReceived > 0)
+                setDataReceivedType("Mb");
+            else if (kbReceived > 0)
+                setDataReceivedType("kb");
+
+           /* totalBytesReceived = (n1 - n2);
+            if (totalBytesReceived > (1024))
+            {
+                if (totalBytesReceived > (1024 * 1024))
+                {
+                    if (totalBytesReceived > (1024 * 1024 * 1024))
                         setDataReceivedType("Gb");
                     else
                         setDataReceivedType("Mb");
@@ -201,23 +253,35 @@ namespace StatProgramProject
                     setDataReceivedType("kb");
             }
             if (getDataReceivedType() == "byte")
-                dataReceived = bytesReceived;
+                dataReceived = totalBytesReceived;
             else if (getDataReceivedType() == "kb")
-                dataReceived = bytesReceived / 1024;
+                dataReceived = totalBytesReceived / 1024;
             else if (getDataReceivedType() == "Mb")
-                dataReceived = bytesReceived / 1024 / 1024;
+                dataReceived = totalBytesReceived / 1024 / 1024;
             else if (getDataReceivedType() == "Gb")
-                dataReceived = bytesReceived / 1024 / 1024 / 1024;
+                dataReceived = totalBytesReceived / 1024 / 1024 / 1024;*/
         }
 
-        public long getDataSent()
+        public string getDataSent()
         {
-            return dataSent;
+            if (getDataSentType() == "Gb")
+                return gbSent.ToString() + "." + Math.Round(mbSent / 1024.0 * 100);
+            else if (getDataSentType() == "Mb")
+                return mbSent.ToString() + "." + Math.Round(kbSent / 1024.0 * 100);
+            else if (getDataSentType() == "kb")
+                return kbSent.ToString() + "." + Math.Round(bytesSent / 1024.0 * 100);
+            else return bytesSent.ToString();
         }
 
-        public long getDataReceived()
+        public string getDataReceived()
         {
-            return dataReceived;
+            if (getDataReceivedType() == "Gb")
+                return gbReceived.ToString() + "." + Math.Round(mbReceived / 1024.0 * 100);
+            else if (getDataReceivedType() == "Mb")
+                return mbReceived.ToString() + "." + Math.Round(kbReceived / 1024.0 * 100);
+            else if (getDataReceivedType() == "kb")
+                return kbReceived.ToString() + "." + Math.Round(bytesReceived / 1024.0 * 100);
+            else return bytesReceived.ToString();
         }
 
         private void setDataSentType(string s)
@@ -262,8 +326,8 @@ namespace StatProgramProject
                 // Calculate speed if there was already a change in traffic
                 if (lblDataSentCount.Text != "0" && lblDataReceivedCount.Text != "0" && !reMaximized)
                 {
-                    int bytesSentSpeed = (int)(interfaceStats.BytesSent - bytesSentAtStartUp - bytesSent);
-                    int bytesReceivedSpeed = (int)(interfaceStats.BytesReceived - bytesReceivedAtStartUp - bytesReceived);
+                    int bytesSentSpeed = (int)(interfaceStats.BytesSent - bytesSentAtStartUp - totalBytesSent);
+                    int bytesReceivedSpeed = (int)(interfaceStats.BytesReceived - bytesReceivedAtStartUp - totalBytesReceived);
                     setNetUpSpeed(bytesSentSpeed);
                     setNetDownSpeed(bytesReceivedSpeed);
                 }
@@ -273,8 +337,8 @@ namespace StatProgramProject
                 // Display traffic that happened since the program was started
                 setDataSent(interfaceStats.BytesSent, bytesSentAtStartUp);
                 setDataReceived(interfaceStats.BytesReceived, bytesReceivedAtStartUp);
-                lblDataSentCount.Text = getDataSent().ToString() + " " + getDataSentType();
-                lblDataReceivedCount.Text = getDataReceived().ToString() + " " + getDataReceivedType();
+                lblDataSentCount.Text = getDataSent() + " " + getDataSentType();
+                lblDataReceivedCount.Text = getDataReceived() + " " + getDataReceivedType();
                 if (reMaximized) reMaximized = false;
 
             }
