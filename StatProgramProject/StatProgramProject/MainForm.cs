@@ -18,7 +18,11 @@ namespace StatProgramProject
     {
         string programVersion = "0.05";
         GlobalKeyboardHook kHook;
-      
+        // For label font resize
+        public int initialWidth;
+        public int initialHeight;
+        public float initialFontSize;
+
         public MainForm()
         {
             InitializeComponent();
@@ -35,7 +39,35 @@ namespace StatProgramProject
             vars.forecolor = Color.Lime;
             menucolor();
             netavailable();
+            // Sets the initial size of the variables for label font resize
+            initialWidth = Width;
+            initialHeight = Height;
+            initialFontSize = lblMouseStats.Font.Size;
+            lblMouseStats.Resize += LabelFont_Resize;
         }
+
+        private void LabelFont_Resize(object sender, EventArgs e)
+        {
+            SuspendLayout();
+            // Get the proportionality of the resize
+            float proportionalNewWidth = (float)Width / initialWidth;
+            float proportionalNewHeight = (float)Height / initialHeight;
+
+            Label[] labelsOnForm = { lblLeftClickCount, lblKeyPressCount, lblMouseStats, lblKeyboardStats, lblLeftClickText,
+                                     lblKeyPressText, lblRightClickText, lblRightClickCount, lblMiddleClickText, lblMiddleClickCount,
+                                     lblDataReceivedCount, lblDataReceivedText, lblDataSentCount, lblDataSentText, lblDownSpeedCount,
+                                     lblDownSpeedText, lblNetStats, lblUpSpeedCount, lblUpSpeedText,lblUptime,lblUptimeText };
+            foreach (Label label in labelsOnForm)
+            {
+
+                // Calculate the current font size
+                label.Font = new Font(label.Font.FontFamily, initialFontSize *
+                    (proportionalNewWidth > proportionalNewHeight ? proportionalNewHeight : proportionalNewWidth),
+                    label.Font.Style);
+            }
+            ResumeLayout();
+        }
+
         private void Mouse(object sender, EventArgs e)
         {
             updateStats();

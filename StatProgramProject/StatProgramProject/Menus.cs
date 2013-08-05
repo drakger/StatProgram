@@ -71,7 +71,7 @@ namespace StatProgramProject
                     Label[] labelsOnForm = { lblLeftClickCount, lblKeyPressCount, lblMouseStats, lblKeyboardStats, lblLeftClickText,
                                      lblKeyPressText, lblRightClickText, lblRightClickCount, lblMiddleClickText, lblMiddleClickCount,
                                      lblDataReceivedCount, lblDataReceivedText, lblDataSentCount, lblDataSentText, lblDownSpeedCount,
-                                     lblDownSpeedText, lblNetStats, lblUpSpeedCount, lblUpSpeedText };
+                                     lblDownSpeedText, lblNetStats, lblUpSpeedCount, lblUpSpeedText,lblUptime,lblUptimeText };
                     foreach (Label label in labelsOnForm)
                     {
                         label.Font = fontDialog1.Font;
