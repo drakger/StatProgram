@@ -213,11 +213,11 @@ namespace StatProgramProject
         public string getDataSent()
         {
             if (getDataSentType() == "Gb")
-                return String.Format("{0:0.00}", (gbSent + mbReceived / KB_FROM_BYTES));
+                return String.Format("{0:0.00}", (gbSent + mbSent / KB_FROM_BYTES));
             if (getDataSentType() == "Mb")
-                return String.Format("{0:0.00}", (mbSent + kbReceived / KB_FROM_BYTES));
+                return String.Format("{0:0.00}", (mbSent + kbSent / KB_FROM_BYTES));
             if (getDataSentType() == "kb")
-                return String.Format("{0:0.00}", (kbSent + bytesReceived / KB_FROM_BYTES));
+                return String.Format("{0:0.00}", (kbSent + bytesSent / KB_FROM_BYTES));
             else 
                 return bytesSent.ToString();
         }
