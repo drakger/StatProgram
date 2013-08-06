@@ -25,6 +25,7 @@ namespace StatProgramProject
 
         public MainForm()
         {
+            Application.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
             InitializeComponent();
             InitializeNetworkInterface();
             InitializeTimer();

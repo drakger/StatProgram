@@ -16,8 +16,8 @@ namespace StatProgramProject
     {
         IPv4InterfaceStatistics interfaceStats = NetworkInterface.GetAllNetworkInterfaces()[0].GetIPv4Statistics();
         private NetworkInterface[] nicArr;
-        private const int NET_TIMER_UPDATE = 1000;
-        private const int NETCHECK_TIMER_UPDATE = 60000;
+        private const double NET_TIMER_UPDATE = 1000;
+        private const double NETCHECK_TIMER_UPDATE = 60000;
         private Timer netTimer;
         private Timer netcheckTimer;
         long bytesSentAtStartUp, bytesReceivedAtStartUp;
@@ -29,6 +29,9 @@ namespace StatProgramProject
         protected int gbSent, mbSent, kbSent, gbReceived, mbReceived, kbReceived;
         protected string dataSentType = "byte";
         protected string dataReceivedType = "byte";
+        private const double KB_FROM_BYTES = 1024;
+        private const double MB_FROM_BYTES = KB_FROM_BYTES * 1024;
+        private const double GB_FROM_BYTES = MB_FROM_BYTES * 1024;
 
         //The minimum speed required. Passing 0 will not filter connection using speed.
 
@@ -164,22 +167,17 @@ namespace StatProgramProject
         private void setDataSent(long n1, long n2)
         {
             totalBytesSent = (n1 - n2);
-            bytesSent = totalBytesSent - gbSent * 1024 * 1024 * 1024 - mbSent * 1024 * 1024 - kbSent * 1024;
-            while (bytesSent > 1024)
-            {
-                bytesSent -= 1024;
-                kbSent++;
-                if (kbSent == 1024)
-                {
-                    kbSent -= 1024;
-                    mbSent++;
-                    if (mbSent == 1024)
-                    {
-                        mbSent -= 1024;
-                        gbSent++;
-                    }
-                }
-            }
+            gbSent = (int)(totalBytesSent / GB_FROM_BYTES);
+            mbSent = (int)(totalBytesSent % GB_FROM_BYTES / MB_FROM_BYTES);
+            kbSent = (int)(totalBytesSent % MB_FROM_BYTES / KB_FROM_BYTES);
+            bytesSent = (int)(totalBytesSent % KB_FROM_BYTES);
+
+            /*if (gbSent > 0 && getDataSentType() != "Gb")
+                setDataSentType("Gb");
+            else if (mbSent > 0 && getDataSentType() != "Mb" && getDataSentType() != "Gb")
+                setDataSentType("Mb");
+            else if (kbSent > 0 && getDataSentType() != "kb" && getDataSentType() != "Mb" && getDataSentType() != "Gb")
+                setDataSentType("kb");*/
 
             if (gbSent > 0)
                 setDataSentType("Gb");
@@ -187,152 +185,53 @@ namespace StatProgramProject
                 setDataSentType("Mb");
             else if (kbSent > 0)
                 setDataSentType("kb");
-
-          /*  if (totalBytesSent > (1024))
-            {
-                if (totalBytesSent > (1024 * 1024))
-                {
-                    if (totalBytesSent > (1024 * 1024 * 1024))
-                    {
-                        setDataSentType("Gb");
-                    }
-                    else
-                        setDataSentType("Mb");
-                }
-                else
-                    setDataSentType("kb");
-            }
-            if (getDataSentType() == "byte")
-                dataSent = totalBytesSent;
-            else if (getDataSentType() == "kb")
-                dataSent = totalBytesSent / 1024;
-            else if (getDataSentType() == "Mb")
-                dataSent = totalBytesSent / 1024 / 1024;
-            else if (getDataSentType() == "Gb")
-                dataSent = totalBytesSent / 1024 / 1024 / 1024; */
         }
 
         private void setDataReceived(long n1, long n2)
         {
             totalBytesReceived = (n1 - n2);
-            bytesReceived = totalBytesReceived - gbReceived * 1024 * 1024 * 1024 - mbReceived * 1024 * 1024 - kbReceived * 1024;
-            while (bytesReceived > 1024)
-            {
-                bytesReceived -= 1024;
-                kbReceived++;
-                if (kbReceived == 1024)
-                {
-                    kbReceived -= 1024;
-                    mbReceived++;
-                    if (mbReceived == 1024)
-                    {
-                        mbReceived -= 1024;
-                        gbReceived++;
-                    }
-                }
-            }
+            gbReceived = (int)(totalBytesReceived / GB_FROM_BYTES);
+            mbReceived = (int)(totalBytesReceived % GB_FROM_BYTES / MB_FROM_BYTES);
+            kbReceived = (int)(totalBytesReceived % MB_FROM_BYTES / KB_FROM_BYTES);
+            bytesReceived = (int)(totalBytesReceived % KB_FROM_BYTES);
+
+            /*if (gbReceived > 0 && getDataReceivedType() != "Gb")
+                setDataReceivedType("Gb");
+            else if (mbReceived > 0 && getDataReceivedType() != "Mb" && getDataReceivedType() != "Gb")
+                setDataReceivedType("Mb");
+            else if (kbReceived > 0 && getDataReceivedType() != "kb" && getDataReceivedType() != "Mb" && getDataReceivedType() != "Gb")
+                setDataReceivedType("kb");*/
 
             if (gbReceived > 0)
                 setDataReceivedType("Gb");
             else if (mbReceived > 0)
                 setDataReceivedType("Mb");
             else if (kbReceived > 0)
-                setDataReceivedType("kb");
-
-           /* totalBytesReceived = (n1 - n2);
-            if (totalBytesReceived > (1024))
-            {
-                if (totalBytesReceived > (1024 * 1024))
-                {
-                    if (totalBytesReceived > (1024 * 1024 * 1024))
-                        setDataReceivedType("Gb");
-                    else
-                        setDataReceivedType("Mb");
-                }
-                else
-                    setDataReceivedType("kb");
-            }
-            if (getDataReceivedType() == "byte")
-                dataReceived = totalBytesReceived;
-            else if (getDataReceivedType() == "kb")
-                dataReceived = totalBytesReceived / 1024;
-            else if (getDataReceivedType() == "Mb")
-                dataReceived = totalBytesReceived / 1024 / 1024;
-            else if (getDataReceivedType() == "Gb")
-                dataReceived = totalBytesReceived / 1024 / 1024 / 1024;*/
+                setDataReceivedType("kb");   
         }
 
         public string getDataSent()
         {
-            string mbSentPercentage, kbSentPercentage, byteSentPercentage;
             if (getDataSentType() == "Gb")
-            {
-                if (Math.Round(mbSent / 1024.0 * 100) < 10)
-                    mbSentPercentage = "0" + Math.Round(mbSent / 1024.0 * 100);
-                else if (Math.Round(mbSent / 1024.0 * 100) == 100)
-                    mbSentPercentage = "99";
-                else 
-                    mbSentPercentage = Math.Round(mbSent / 1024.0 * 100).ToString();
-                return gbSent.ToString() + "." + mbSentPercentage;
-            }
-            else if (getDataSentType() == "Mb")
-            {
-                if (Math.Round(kbSent / 1024.0 * 100) < 10)
-                    kbSentPercentage = "0" + Math.Round(kbSent / 1024.0 * 100);
-                else if (Math.Round(kbSent / 1024.0 * 100) == 100)
-                    kbSentPercentage = "99";
-                else 
-                    kbSentPercentage = Math.Round(kbSent / 1024.0 * 100).ToString();
-                return mbSent.ToString() + "." + kbSentPercentage;
-            }
-            else if (getDataSentType() == "kb")
-            {
-                if (Math.Round(bytesSent / 1024.0 * 100) <10)
-                    byteSentPercentage = "0" + Math.Round(bytesSent / 1024.0 * 100);
-                else if (Math.Round(bytesSent / 1024.0 * 100) == 100)
-                    byteSentPercentage = "99";
-                else 
-                    byteSentPercentage = Math.Round(bytesSent / 1024.0 * 100).ToString();
-                return kbSent.ToString() + "." + byteSentPercentage;
-            }
-
-            else return bytesSent.ToString();
+                return String.Format("{0:0.00}", (gbSent + mbReceived / KB_FROM_BYTES));
+            if (getDataSentType() == "Mb")
+                return String.Format("{0:0.00}", (mbSent + kbReceived / KB_FROM_BYTES));
+            if (getDataSentType() == "kb")
+                return String.Format("{0:0.00}", (kbSent + bytesReceived / KB_FROM_BYTES));
+            else 
+                return bytesSent.ToString();
         }
 
         public string getDataReceived()
         {
-            string mbReceivedPercentage, kbReceivedPercentage, byteReceivedPercentage;
             if (getDataReceivedType() == "Gb")
-            {
-                if (Math.Round(mbReceived / 1024.0 * 100) < 10)
-                    mbReceivedPercentage = "0" + Math.Round(mbReceived / 1024.0 * 100);
-                else if (Math.Round(mbReceived / 1024.0 * 100) == 100)
-                    mbReceivedPercentage = "99";
-                else 
-                    mbReceivedPercentage = Math.Round(mbReceived / 1024.0 * 100).ToString();
-                return gbReceived.ToString() + "." + mbReceivedPercentage;
-            }
-            else if (getDataReceivedType() == "Mb")
-            {
-                if (Math.Round(kbReceived / 1024.0 * 100) < 10)
-                    kbReceivedPercentage = "0" + Math.Round(kbReceived / 1024.0 * 100);
-                else if (Math.Round(kbReceived / 1024.0 * 100) == 100)
-                    kbReceivedPercentage = "99";
-                else 
-                    kbReceivedPercentage = Math.Round(kbReceived / 1024.0 * 100).ToString();
-                return mbReceived.ToString() + "." + kbReceivedPercentage;
-            }
-            else if (getDataReceivedType() == "kb")
-            {
-                if (Math.Round(bytesReceived / 1024.0 * 100) < 10)
-                    byteReceivedPercentage = "0" + Math.Round(bytesReceived / 1024.0 * 100);
-                else if (Math.Round(bytesReceived / 1024.0 * 100) == 100)
-                    byteReceivedPercentage = "99";
-                else 
-                    byteReceivedPercentage = Math.Round(bytesReceived / 1024.0 * 100).ToString();
-                return kbReceived.ToString() + "." + byteReceivedPercentage;
-            }
-            else return bytesReceived.ToString();
+                return String.Format("{0:0.00}", (gbReceived + mbReceived / KB_FROM_BYTES));
+            if (getDataReceivedType() == "Mb")
+                return String.Format("{0:0.00}", (mbReceived + kbReceived / KB_FROM_BYTES));
+            if (getDataReceivedType() == "kb")
+                return String.Format("{0:0.00}", (kbReceived + bytesReceived / KB_FROM_BYTES));
+            else
+                return bytesReceived.ToString();
         }
 
         private void setDataSentType(string s)
@@ -362,7 +261,6 @@ namespace StatProgramProject
             {
                 // TO-DO: ADD CHOICES BETWEEN LOCAL INTERFACES http://www.m0interactive.com/archives/2008/02/06/how_to_calculate_network_bandwidth_speed_in_c_/
                 // PERHAPS TO-DO: ADD BETTER TIMER http://www.m0interactive.com/archives/2006/12/21/high_resolution_timer_in_net_2_0.html
-                // TO-DO: IF THE NUMBER REACHES A HIGH ENOUGH VALUE, CONVERT IT TO A BIGGER TYPE
                 NetworkInterface nic = nicArr[0];
                 IPv4InterfaceStatistics interfaceStats = nic.GetIPv4Statistics();
 
