@@ -73,9 +73,9 @@
             this.lblDataSentText = new System.Windows.Forms.Label();
             this.lblNetStats = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.picNetAvailable = new System.Windows.Forms.PictureBox();
             this.KeyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PressesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picNetAvailable = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -570,18 +570,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(248, 139);
             this.dataGridView1.TabIndex = 20;
             // 
-            // KeyColumn
-            // 
-            this.KeyColumn.HeaderText = "Key";
-            this.KeyColumn.Name = "KeyColumn";
-            this.KeyColumn.ReadOnly = true;
-            // 
-            // PressesColumn
-            // 
-            this.PressesColumn.HeaderText = "Presses";
-            this.PressesColumn.Name = "PressesColumn";
-            this.PressesColumn.ReadOnly = true;
-            // 
             // picNetAvailable
             // 
             this.picNetAvailable.BackColor = System.Drawing.Color.Transparent;
@@ -597,6 +585,18 @@
             this.picNetAvailable.TabStop = false;
             this.picNetAvailable.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.picNetAvailable_LoadCompleted);
             this.picNetAvailable.Click += new System.EventHandler(this.picNetAvailable_Click);
+            // 
+            // KeyColumn
+            // 
+            this.KeyColumn.HeaderText = "Key";
+            this.KeyColumn.Name = "KeyColumn";
+            this.KeyColumn.ReadOnly = true;
+            // 
+            // PressesColumn
+            // 
+            this.PressesColumn.HeaderText = "Presses";
+            this.PressesColumn.Name = "PressesColumn";
+            this.PressesColumn.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -663,12 +663,12 @@
         private System.Windows.Forms.Label lblDataSentText;
         private System.Windows.Forms.Label lblNetStats;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KeyColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PressesColumn;
         private System.Windows.Forms.ToolStripMenuItem statsToolStripMenuItem;
         private System.Windows.Forms.Label lblUptime;
         private System.Windows.Forms.Label lblUptimeText;
         private System.Windows.Forms.PictureBox picNetAvailable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KeyColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PressesColumn;
     }
 }
 

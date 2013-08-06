@@ -126,9 +126,9 @@ namespace StatProgramProject
             {
                 if (Convert.ToString(row.Cells[0].Value) == ((char)e.KeyValue).ToString())
                 {
-                    uint keycount = Convert.ToUInt32(row.Cells[1].Value);
+                    int keycount = Convert.ToInt32(row.Cells[1].Value);
                     keycount++;
-                    row.Cells[1].Value = keycount.ToString();
+                    row.Cells[1].Value = keycount;
                     foundkey = true;
                 }
             }
@@ -137,7 +137,7 @@ namespace StatProgramProject
                 dataGridView1.Rows.Add();
                 int index = dataGridView1.Rows.Count - 1;
                 dataGridView1.Rows[index].Cells[0].Value = ((char)e.KeyValue).ToString();
-                dataGridView1.Rows[index].Cells[1].Value = "1";
+                dataGridView1.Rows[index].Cells[1].Value = 1;
             }
             updateStats();
         }
