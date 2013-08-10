@@ -49,7 +49,24 @@ namespace StatProgramProject
             vars.exit = true;
             this.Close();
         }
-
+        private void historyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HistoryForm HistoryForm = new HistoryForm();
+            HistoryForm.Owner = this;
+            vars.mainfh = this.Height;
+            vars.mainfw = this.Width;
+            vars.mainflocation = this.Location;
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                vars.mainfmaxim = true;
+            }
+            else
+            {
+                vars.mainfmaxim = false;
+            }
+            this.Hide();
+            HistoryForm.Show();
+        }
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("Changelog.txt");
@@ -76,6 +93,7 @@ namespace StatProgramProject
                     {
                         label.Font = fontDialog1.Font;
                         label.ForeColor = fontDialog1.Color;
+                        vars.labelfont = fontDialog1.Font;
                     }
                     menuStrip1.ForeColor = fontDialog1.Color;
                     vars.forecolor = fontDialog1.Color;

@@ -174,6 +174,11 @@ namespace StatProgramProject
             public static Color backcolor;
             public static Color forecolor;
             public static bool netpictureh;
+            public static Font labelfont;
+            public static bool mainfmaxim;
+            public static int mainfh;
+            public static int mainfw;
+            public static Point mainflocation;
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -201,6 +206,7 @@ namespace StatProgramProject
         {
             netavailable();
         }
+
 
     }
 }
