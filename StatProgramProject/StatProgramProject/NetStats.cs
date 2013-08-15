@@ -40,7 +40,7 @@ namespace StatProgramProject
             Ping ping = new Ping();
             try
             {
-                PingReply pingStatus = ping.Send("google.com");
+                PingReply pingStatus = ping.Send("google.com",1000);
                 if (pingStatus.Status == IPStatus.Success)
                 {
                     return true;
