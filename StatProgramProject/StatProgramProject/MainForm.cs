@@ -179,6 +179,7 @@ namespace StatProgramProject
             public static int mainfh;
             public static int mainfw;
             public static Point mainflocation;
+            public static bool pingcomplete;
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

@@ -17,7 +17,7 @@ namespace StatProgramProject
         IPv4InterfaceStatistics interfaceStats = NetworkInterface.GetAllNetworkInterfaces()[0].GetIPv4Statistics();
         private NetworkInterface[] nicArr;
         private const double NET_TIMER_UPDATE = 1000;
-        private const double NETCHECK_TIMER_UPDATE = 60000;
+        private const double NETCHECK_TIMER_UPDATE = 120000;
         private Timer netTimer;
         private Timer netcheckTimer;
         long bytesSentAtStartUp, bytesReceivedAtStartUp;
@@ -39,9 +39,19 @@ namespace StatProgramProject
         {
             Ping ping = new Ping();
             try
-            {
-                PingReply pingStatus = ping.Send("google.com",1000);
-                if (pingStatus.Status == IPStatus.Success)
+            {    
+                ping.PingCompleted += PingCompleted;
+                ping.SendAsync("google.com", 1000);
+                /*PingReply pingStatus = ping.Send("google.com",1000);
+                 if (pingStatus.Status == IPStatus.Success)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }*/
+                if (vars.pingcomplete == true)
                 {
                     return true;
                 }
@@ -52,10 +62,28 @@ namespace StatProgramProject
             }
             catch (Exception)
             {
+                vars.pingcomplete = false;
                 return false;
             }    
         }
-
+        public static void PingCompleted(object sender, PingCompletedEventArgs e)
+        {
+              try
+            {
+                if (e.Reply.Status != IPStatus.Success)
+                {
+                    vars.pingcomplete = false;
+                }
+                else
+                {
+                    vars.pingcomplete = true;
+                }
+            }
+            catch
+            {
+                vars.pingcomplete = false;
+            }
+        }
         public void netcheckTimer_Tick(object sender, EventArgs e)
         {
             netavailable();
