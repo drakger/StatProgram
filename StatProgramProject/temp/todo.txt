@@ -4,4 +4,5 @@ To-do:
 - DataGridView function keys display
 - Settings Form
 - Rewrite dataSent/dataReceived, using Locale and using double values
+- Settings / what to ping
 - ...
