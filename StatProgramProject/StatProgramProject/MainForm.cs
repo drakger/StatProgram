@@ -29,6 +29,7 @@ namespace StatProgramProject
             InitializeComponent();
             InitializeNetworkInterface();
             InitializeTimer();
+            netavailable();
             kHook = new GlobalKeyboardHook();
             kHook.KeyUp += new KeyEventHandler(gHook_KeyUp);
             kHook.hook();
@@ -39,7 +40,6 @@ namespace StatProgramProject
             vars.backcolor = Color.Black;
             vars.forecolor = Color.Lime;
             menucolor();
-            netavailable();
             // Sets the initial size of the variables for font resize
             initialWidth = Width;
             initialHeight = Height;
@@ -90,6 +90,15 @@ namespace StatProgramProject
                 lblRightClickCount.Text = Convert.ToString(vars.rclick);
                 lblMiddleClickCount.Text = Convert.ToString(vars.mclick);
                 lblKeyPressCount.Text = Convert.ToString(vars.keys);
+                Label[] statlabels = { lblLeftClickCount, lblRightClickCount, lblMiddleClickCount, lblKeyPressCount };
+                foreach (Label label in statlabels)
+                {
+                    while (label.Width < System.Windows.Forms.TextRenderer.MeasureText(label.Text,
+                        new Font(label.Font.FontFamily, label.Font.Size, label.Font.Style)).Width)
+                    {
+                        label.Font = new Font(label.Font.FontFamily, label.Font.Size - 0.5f, label.Font.Style);
+                    }
+                }
             }
         }
         private void InitializeTimer()
@@ -207,7 +216,5 @@ namespace StatProgramProject
         {
             netavailable();
         }
-
-
     }
 }
