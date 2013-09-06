@@ -16,7 +16,7 @@ namespace StatProgramProject
         public void menucolor()
         {
             ToolStripMenuItem[] ToolStripMenuItemsOnForm = { exitToolStripMenuItem1, changelogToolStripMenuItem, fontToolStripMenuItem,
-                                                                       backgroundToolStripMenuItem, settingsToolStripMenuItem, aboutToolStripMenuItem };
+                                                                       backgroundToolStripMenuItem, settingsToolStripMenuItem, aboutToolStripMenuItem,saveToolStripMenuItem,loadToolStripMenuItem };
             foreach (ToolStripMenuItem ToolStripMenuItem in ToolStripMenuItemsOnForm)
             {
                 ToolStripMenuItem.ForeColor = vars.forecolor;

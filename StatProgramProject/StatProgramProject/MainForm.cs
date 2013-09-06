@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
+using System.Data.OleDb;
 
 namespace StatProgramProject
 {
@@ -175,10 +176,10 @@ namespace StatProgramProject
         }
         public static class vars
         {
-            public static uint rclick;
-            public static uint lclick;
-            public static uint mclick;
-            public static uint keys;
+            public static double rclick;
+            public static double lclick;
+            public static double mclick;
+            public static double keys;
             public static bool exit;
             public static Color backcolor;
             public static Color forecolor;
@@ -215,6 +216,71 @@ namespace StatProgramProject
         private void picNetAvailable_Click(object sender, EventArgs e)
         {
             netavailable();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OleDbConnection oleConnection = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=save.mdb"); //Connect to database
+            OleDbCommand oleCommand = new OleDbCommand("UPDATE save SET Statnumber=@statnumber WHERE Stat=@statname", oleConnection); //SQL command
+            oleCommand.Parameters.AddWithValue("statnumber", vars.lclick);
+            oleCommand.Parameters.AddWithValue("statname", "lclicks");
+            oleConnection.Open();
+            OleDbDataReader oleDataReader = oleCommand.ExecuteReader();
+            oleDataReader.Close();
+            oleCommand.Parameters.Clear();
+            oleCommand.Parameters.AddWithValue("statnumber", vars.rclick);
+            oleCommand.Parameters.AddWithValue("statname", "rclicks");
+            oleDataReader = oleCommand.ExecuteReader();
+            oleDataReader.Close();
+            oleCommand.Parameters.Clear();
+            oleCommand.Parameters.AddWithValue("statnumber", vars.mclick);
+            oleCommand.Parameters.AddWithValue("statname", "mclicks");
+            oleDataReader = oleCommand.ExecuteReader();
+            oleDataReader.Close();
+            oleCommand.Parameters.Clear();
+            oleCommand.Parameters.AddWithValue("statnumber", vars.keys);
+            oleCommand.Parameters.AddWithValue("statname", "kpresses");
+            oleDataReader = oleCommand.ExecuteReader();
+            
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OleDbConnection oleConnection = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=save.mdb");
+            OleDbCommand oleCommand = new OleDbCommand("SELECT * FROM save WHERE Stat=@statname", oleConnection);
+            oleCommand.Parameters.AddWithValue("statname", "lclicks");
+            oleConnection.Open();
+            OleDbDataReader oleDataReader = oleCommand.ExecuteReader();
+            while (oleDataReader.Read())
+            {
+                vars.lclick = oleDataReader.GetDouble(1);
+            }
+            oleDataReader.Close();
+            oleCommand.Parameters.Clear();
+            oleCommand.Parameters.AddWithValue("statname", "rclicks");
+            oleDataReader = oleCommand.ExecuteReader();
+            while (oleDataReader.Read())
+            {
+                vars.rclick = oleDataReader.GetDouble(1);
+            }
+            oleDataReader.Close();
+            oleCommand.Parameters.Clear();
+            oleCommand.Parameters.AddWithValue("statname", "mclicks");
+            oleDataReader = oleCommand.ExecuteReader();
+            while (oleDataReader.Read())
+            {
+                vars.mclick = oleDataReader.GetDouble(1);
+            }
+            oleDataReader.Close();
+            oleCommand.Parameters.Clear();
+            oleCommand.Parameters.AddWithValue("statname", "kpresses");
+            oleDataReader = oleCommand.ExecuteReader();
+            while (oleDataReader.Read())
+            {
+                vars.keys = oleDataReader.GetDouble(1);
+            }
+            updateStats();
+
         }
     }
 }
